@@ -600,17 +600,13 @@ python3 -m pytest tests/
 
 **扫码添加我的飞书**
 
-![飞书二维码](assets/contact-qr.png)
+<img src="assets/contact-qr.png" width="200" alt="飞书二维码" />
 
 📧 **Email**: [newversionparty@outlook.com](mailto:newversionparty@outlook.com)
 
 🐛 **Issues**: [GitHub Issues](https://github.com/newversionparty-cn/TNFD-disclosure/issues)
 
-</div>
-
 ---
-
-<div align="center">
 
 **Made with ❤️ for ESG professionals**
 
