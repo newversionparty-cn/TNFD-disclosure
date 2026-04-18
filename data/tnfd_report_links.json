@@ -1,0 +1,241 @@
+{
+  "meta": {
+    "source": "TNFD Official Knowledge Hub",
+    "url": "https://tnfd.global/knowledge-hub/example-tnfd-reporting/",
+    "last_updated": "2026-04-18",
+    "total_adopters": "416+"
+  },
+  "industries": {
+    "solar_clean_energy": {
+      "name": "光伏/清洁能源",
+      "companies": [
+        {
+          "name": "隆基绿能",
+          "name_en": "LONGi",
+          "country": "中国",
+          "report_type": "独立 TNFD 报告",
+          "publish_date": "2025-11",
+          "methodology": "TNFD LEAP + 安永 CCaSS",
+          "highlights": ["自然资本评估试点", "2149.6 万元节约", "2050 净零损失目标", "IUCN 合作"],
+          "links": {
+            "tnfd_official": "https://tnfd.global/knowledge-hub/example-tnfd-reporting/",
+            "company_website": "https://www.longi.com/cn/news/tnfd-report/"
+          }
+        },
+        {
+          "name": "协鑫科技",
+          "name_en": "GCL",
+          "country": "中国",
+          "report_type": "ESG 报告整合",
+          "publish_date": "2025-04",
+          "methodology": "TNFD LEAP",
+          "highlights": ["供应链风险评估"],
+          "links": {
+            "tnfd_official": "https://tnfd.global/knowledge-hub/example-tnfd-reporting/"
+          }
+        },
+        {
+          "name": "AMEA Power",
+          "country": "阿联酋",
+          "report_type": "Nature/TNFD 报告",
+          "publish_date": "2025",
+          "methodology": "TNFD LEAP",
+          "highlights": ["阿联酋光伏龙头"],
+          "links": {
+            "tnfd_official": "https://tnfd.global/knowledge-hub/example-tnfd-reporting/"
+          }
+        },
+        {
+          "name": "Vestas",
+          "country": "丹麦",
+          "report_type": "独立 TNFD 报告",
+          "publish_date": "2024-12",
+          "methodology": "TNFD LEAP",
+          "highlights": ["有限鉴证"],
+          "links": {
+            "tnfd_official": "https://tnfd.global/knowledge-hub/example-tnfd-reporting/"
+          }
+        },
+        {
+          "name": "Ørsted",
+          "country": "丹麦",
+          "report_type": "独立 TNFD 报告",
+          "publish_date": "2024-11",
+          "methodology": "TNFD LEAP",
+          "highlights": ["有限鉴证"],
+          "links": {
+            "tnfd_official": "https://tnfd.global/knowledge-hub/example-tnfd-reporting/"
+          }
+        }
+      ]
+    },
+    "agriculture_farming": {
+      "name": "农业/养殖/食品",
+      "companies": [
+        {
+          "name": "牧原股份",
+          "name_en": "Muyuan Foods",
+          "country": "中国",
+          "report_type": "ESG 报告整合",
+          "publish_date": "2026-03",
+          "methodology": "TNFD LEAP + 德勤 + 自然资本议定书",
+          "highlights": ["49 项监测指标", "自然资本议定书 9 步骤", "供应链风险传导模型", "粪水 100% 资源化"],
+          "links": {
+            "tnfd_official": "https://tnfd.global/knowledge-hub/example-tnfd-reporting/",
+            "hkex": "https://www.hkexnews.hk/listedco/listconews/sehk/2026/0329/2026032900378_c.pdf"
+          }
+        },
+        {
+          "name": "Agrovision",
+          "country": "秘鲁",
+          "report_type": "Nature/TNFD 报告",
+          "publish_date": "2024",
+          "methodology": "TNFD LEAP",
+          "highlights": ["秘鲁农业"],
+          "links": {
+            "tnfd_official": "https://tnfd.global/knowledge-hub/example-tnfd-reporting/"
+          }
+        },
+        {
+          "name": "Charoen Pokphand Group",
+          "country": "泰国",
+          "report_type": "Nature/TNFD 报告",
+          "publish_date": "2024",
+          "methodology": "TNFD LEAP",
+          "highlights": ["泰国正大集团"],
+          "links": {
+            "tnfd_official": "https://tnfd.global/knowledge-hub/example-tnfd-reporting/"
+          }
+        }
+      ]
+    },
+    "financial_banking": {
+      "name": "金融（银行/保险/资管）",
+      "companies": [
+        {
+          "name": "汇丰银行",
+          "name_en": "HSBC",
+          "country": "英国",
+          "report_type": "TNFD 试点报告",
+          "publish_date": "2024-07",
+          "methodology": "TNFD LEAP",
+          "highlights": ["融资组合自然风险评估"],
+          "links": {
+            "tnfd_official": "https://tnfd.global/knowledge-hub/example-tnfd-reporting/"
+          }
+        },
+        {
+          "name": "COMMERZBANK",
+          "country": "德国",
+          "report_type": "Integrated TCFD+TNFD",
+          "publish_date": "2025",
+          "methodology": "TNFD LEAP",
+          "highlights": ["整合披露"],
+          "links": {
+            "tnfd_official": "https://tnfd.global/knowledge-hub/example-tnfd-reporting/"
+          }
+        },
+        {
+          "name": "Banco de Bogotá",
+          "country": "哥伦比亚",
+          "report_type": "Nature/TNFD 报告",
+          "publish_date": "2025",
+          "methodology": "TNFD LEAP",
+          "highlights": ["哥伦比亚最大银行"],
+          "links": {
+            "tnfd_official": "https://tnfd.global/knowledge-hub/example-tnfd-reporting/"
+          }
+        }
+      ]
+    },
+    "mining_metals": {
+      "name": "矿业/金属",
+      "companies": [
+        {
+          "name": "力拓",
+          "name_en": "Rio Tinto",
+          "country": "英国/澳大利亚",
+          "report_type": "独立 TNFD 报告",
+          "publish_date": "2024-10",
+          "methodology": "TNFD LEAP + ICMM",
+          "highlights": ["ICMM 联合指南", "闭矿恢复规划"],
+          "links": {
+            "tnfd_official": "https://tnfd.global/knowledge-hub/example-tnfd-reporting/"
+          }
+        },
+        {
+          "name": "CSN",
+          "name_en": "Companhia Siderúrgica Nacional",
+          "country": "巴西",
+          "report_type": "Nature/TNFD 报告",
+          "publish_date": "2024",
+          "methodology": "TNFD LEAP",
+          "highlights": ["巴西钢铁"],
+          "links": {
+            "tnfd_official": "https://tnfd.global/knowledge-hub/example-tnfd-reporting/"
+          }
+        }
+      ]
+    },
+    "real_estate": {
+      "name": "房地产",
+      "companies": [
+        {
+          "name": "Forico",
+          "country": "日本",
+          "report_type": "Integrated TCFD+TNFD",
+          "publish_date": "2025",
+          "methodology": "TNFD LEAP",
+          "highlights": ["日本房地产"],
+          "links": {
+            "tnfd_official": "https://tnfd.global/knowledge-hub/example-tnfd-reporting/"
+          }
+        },
+        {
+          "name": "Brigade Enterprises Ltd",
+          "country": "印度",
+          "report_type": "Nature/TNFD 报告",
+          "publish_date": "2025",
+          "methodology": "TNFD LEAP",
+          "highlights": ["印度房地产"],
+          "links": {
+            "tnfd_official": "https://tnfd.global/knowledge-hub/example-tnfd-reporting/"
+          }
+        }
+      ]
+    },
+    "technology_telecom": {
+      "name": "科技/通信",
+      "companies": [
+        {
+          "name": "ASUSTEK COMPUTER",
+          "name_en": "ASUS",
+          "country": "台湾",
+          "report_type": "Nature/TNFD 报告",
+          "publish_date": "2025",
+          "methodology": "TNFD LEAP",
+          "highlights": ["台湾科技"],
+          "links": {
+            "tnfd_official": "https://tnfd.global/knowledge-hub/example-tnfd-reporting/"
+          }
+        },
+        {
+          "name": "BIPROGY Group",
+          "country": "日本",
+          "report_type": "Integrated TCFD+TNFD",
+          "publish_date": "2025",
+          "methodology": "TNFD LEAP",
+          "highlights": ["日本 IT 服务"],
+          "links": {
+            "tnfd_official": "https://tnfd.global/knowledge-hub/example-tnfd-reporting/"
+          }
+        }
+      ]
+    }
+  },
+  "usage_guide": {
+    "online": "访问 TNFD 官方报告库 https://tnfd.global/knowledge-hub/example-tnfd-reporting/ 搜索公司名下载 PDF",
+    "offline": "本 JSON 文件包含重点企业的报告链接，可离线查询",
+    "update": "建议每季度同步一次官方报告库更新"
+  }
+}
