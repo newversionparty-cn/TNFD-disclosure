@@ -596,9 +596,17 @@ python3 -m pytest tests/
 
 ## 联系方式
 
-- 📧 Email: [你的邮箱]
-- 🐛 Issues: [GitHub Issues](https://github.com/newversionparty-cn/TNFD-disclosure/issues)
-- 📖 文档: [GitHub Wiki](https://github.com/newversionparty-cn/TNFD-disclosure/wiki)
+<div align="center">
+
+**扫码添加我的飞书**
+
+![飞书二维码](assets/contact-qr.png)
+
+📧 **Email**: [newversionparty@outlook.com](mailto:newversionparty@outlook.com)
+
+🐛 **Issues**: [GitHub Issues](https://github.com/newversionparty-cn/TNFD-disclosure/issues)
+
+</div>
 
 ---
 
@@ -606,6 +614,6 @@ python3 -m pytest tests/
 
 **Made with ❤️ for ESG professionals**
 
-[⭐ Star this repo](https://github.com/newversionparty-cn/TNFD-disclosure) if you find it useful!
+[![Star this repo](https://img.shields.io/github/stars/newversionparty-cn/TNFD-disclosure?style=social)](https://github.com/newversionparty-cn/TNFD-disclosure)
 
 </div>
