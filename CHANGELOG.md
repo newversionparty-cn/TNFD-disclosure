@@ -6,7 +6,16 @@
 
 ## [Unreleased]
 
-## [3.0.0] - 2026-04-19
+### 优化
+
+- **README 全面重构**：解决定位模糊、快速开始残缺、语言混乱问题
+- **新增"What is this?"模块**：明确 Skill = AI Agent Prompt Library，不是 Python CLI
+- **新增三框架适配说明**：Hermes / Claude Code / OpenClaw 安装方式
+- **新增 A 阶段量化成熟度表**：Skill 能力边界透明化
+- **新增官方参考文献列表**：Big 4 方法论标注待核验，附官方 PDF 链接
+- **新增中国本土化独立章节**：区分《可持续发展报告指引》≠ TNFD
+- **新增数据源说明表**：免费/付费/用途/LEAP 阶段全部对齐
+- **修复 ASCII 方框表格**：全面改用 Markdown 原生表格
 
 ### ⚠️ P0 信息准确性修正（Web 验证）
 
