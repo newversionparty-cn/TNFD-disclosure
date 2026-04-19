@@ -4,7 +4,7 @@
 
 ---
 
-## \[Unreleased\] · 开发中
+## [Unreleased] · 开发中
 
 ### 计划中
 
@@ -16,7 +16,37 @@
 
 ---
 
-## \[1.0.0\] · 2026-04-19 · V1 首发
+## [2.0.0] · 2026-04-19 · v2 重大更新：PUA 行为控制系统
+
+### 新增
+
+**/tnfd 指令系统**
+- 13 条指令：/tnfd new/status/kpi/benchmark/locate/evaluate/assess/prepare/audit/report/save/reset
+- LEAP 流程全覆盖（Phase 0-5）
+- 状态持久化（~/.tnfd/project-state.json）
+- Sprint Banner + KPI 卡格式化输出
+
+**TNFD PUA Handler**
+- scripts/tnfd_handler.py — 状态管理 + Banner 输出 + KPI 卡
+- ~/.tnfd/config.json — 用户配置
+- ~/.tnfd/commands.json — 指令定义
+- ~/.tnfd/project-state.json — 项目状态
+
+**PUA 行为控制**
+- Sprint Banner：Unicode 方框进度条
+- KPI 卡：绩效报告卡
+- 主动触发：阶段完成/风险发现/数据质量问题提醒
+- 失败升级：L1-L4 压力升级
+
+### 优化
+
+- SKILL.md 全面重构，整合 PUA 指令系统
+- README.md 新增 /tnfd 指令系统说明
+- 安装流程更新（新增 Handler 安装步骤）
+
+---
+
+## [1.0.0] · 2026-04-19 · V1 首发
 
 ### 新增
 

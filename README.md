@@ -317,6 +317,28 @@
 
 ## 快速开始
 
+### /tnfd 指令系统（v2.0 新增）
+
+**激活方式**：在对话中输入 `/tnfd` 相关指令即可激活 PUA 行为控制系统。
+
+| 指令 | 功能 | 类型 |
+|------|------|------|
+| `/tnfd` | 启动 TNFD 助手 | 🆓 免费 |
+| `/tnfd new` | 新建 TNFD 项目 | 🆓 免费 |
+| `/tnfd status` | 查看项目状态 | 🆓 免费 |
+| `/tnfd kpi` | 生成 KPI 报告卡 | 🆓 免费 |
+| `/tnfd benchmark` | Phase 0：对标分析 | 🆓 免费 |
+| `/tnfd locate` | Phase 1：定位 | 🆓 免费 |
+| `/tnfd evaluate` | Phase 2：评价 | 🆓 免费 |
+| `/tnfd assess` | Phase 3：评估 | 🆓 免费 |
+| `/tnfd prepare` | Phase 4：准备 | 🆓 免费 |
+| `/tnfd audit` | Phase 5：审计检查 | 🆓 免费 |
+| `/tnfd report` | 一键生成报告 | 🆓 免费 |
+| `/tnfd save` | 保存项目状态 | 🆓 免费 |
+| `/tnfd reset` | 重置项目 | 🆓 免费 |
+
+**状态持久化**：~/.tnfd/project-state.json（跨会话追踪）
+
 ### 安装
 
 ```bash
@@ -327,7 +349,10 @@ cd TNFD-disclosure
 # 2. 初始化数据（首次使用需要）
 python3 scripts/process_encore_data.py
 
-# 3. 符号链接到 Hermes
+# 3. 安装 TNFD Handler（PUA 状态管理）
+cp scripts/tnfd_handler.py ~/.tnfd/tnfd_handler.py
+
+# 4. 符号链接到 Hermes
 ln -s $(pwd) ~/.Hermes/skills/tnfd-disclosure
 ```
 
