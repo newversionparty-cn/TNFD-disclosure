@@ -191,24 +191,46 @@ TNFD 框架构建于以下国际标准和框架之上：
 
 ### 阶段 E：Evaluate（评价）
 
-**核心任务**：评估企业对自然的依赖和影响
+**核心任务**：基于 WWF BRF 三层数据体系，评估企业对自然的依赖和影响，输出综合风险等级
+
+**方法论升级（v3.1.0）**：
+本阶段主框架已从「ENCORE 单一数据库」升级为「WWF BRF 三层数据体系」。
+BRF 是 WWF 对 ENCORE 的行业权重调整层，并叠加 WWF 70 生物多样性指标。
 
 **具体步骤**：
 1. 确定行业分类（ISIC 代码）
-2. 查询 ENCORE 数据库的行业依赖/影响矩阵
-3. 识别高依赖度的生态系统服务（如水供应、土壤质量）
-4. 识别高影响驱动因素（如土地利用变化、水排放）
-5. 进行重要性排序
+2. 在 BRF INFORM 模块查询行业依赖/影响权重（主要来源）
+3. 用 ENCORE 补充依赖/影响路径的底层逻辑（底座数据）
+4. 在 BRF EXPLORE 模块获取 WWF 70 指标的 Exposure 评分
+5. 完成 Sensitivity 主观评分（1-5，利益相关方协商）
+6. 计算综合风险等级：Dependency × Exposure × Sensitivity
+
+**三层数据体系详解**：
+
+| 层级 | 数据源 | 作用 | 访问方式 |
+|------|--------|------|---------|
+| 第一层 | ENCORE | 依赖/影响路径底座（原始评分） | 免费下载：encorenature.org |
+| 第二层 | WWF BRF | 行业权重调整 + 70 指标 Exposure | 免费：riskfilter.org/biodiversity/inform |
+| 第三层 | Sensitivity | 主观评分（需人工协商） | 企业自评 + 利益相关方访谈 |
 
 **输出物**：
-- 行业依赖矩阵（来自 ENCORE）
-- 重要性议题清单
-- 优先关注的依赖和影响
+- BRF 依赖度/影响度矩阵（Dependency × Impact）
+- Exposure 评分（WWF 70 指标加权）
+- Sensitivity 主观评分（1-5，利益相关方协商）
+- 综合风险等级：Dependency × Exposure × Sensitivity
 
 **工具推荐**：
-- ENCORE 数据库（https://encorenature.org）
+- WWF BRF INFORM（行业权重查询）：https://riskfilter.org/biodiversity/inform
+- WWF BRF EXPLORE（70 指标 Exposure）：https://riskfilter.org/biodiversity/explore
+- ENCORE（路径底座）：https://encorenature.org
 - SBTN 重要性筛选工具
-- CASS-ESG 6.0 指标库
+
+**来源验证**：riskfilter.org/biodiversity（2026-04 实测）
+
+**⚠️ Sensitivity 注意事项**：
+- Sensitivity 是唯一必须由人判定的维度，AI/数据库不能替代
+- 需结合内部自评（40%）+ 利益相关方访谈（60%）
+- 关键考量：社区依赖度、监管压力、媒体关注、供应链集中度
 
 **预计时间**：1-2 周
 
@@ -268,11 +290,12 @@ TNFD 框架构建于以下国际标准和框架之上：
 
 ### 核心数据源（必用）
 
-| 数据源 | 用途 | 网址 | 是否需要注册 |
-|--------|------|------|-------------|
-| **ENCORE** | 行业依赖/影响矩阵 | https://encorenature.org | ❌ 否（直接下载） |
-| **WDPA** | 全球保护区边界 | https://www.protectedplanet.net | ✅ 是（免费注册） |
-| **IPE 蔚蓝地图** | 中国污染数据 | https://www.ipe.org.cn | ❌ 否（公开查询） |
+| 数据源 | 用途 | 网址 | 是否需要注册 | 来源验证 |
+|--------|------|------|-------------|---------|
+| **WWF BRF** | 行业依赖/影响权重（主框架）+ Exposure | https://riskfilter.org/biodiversity | ❌ 否（部分模块免费） | 2026-04实测 |
+| **ENCORE** | 依赖/影响路径底座 | https://encorenature.org | ❌ 否（直接下载） | 持续更新 |
+| **WDPA** | 全球保护区边界 | https://www.protectedplanet.net | ✅ 是（免费注册） | 实时更新 |
+| **IPE 蔚蓝地图** | 中国污染数据 | https://www.ipe.org.cn | ❌ 否（公开查询） | 实时更新 |
 | **WRI Aqueduct** | 水风险数据 | https://www.wri.org/aqueduct | ✅ 是（免费注册） |
 
 ### 中国本土数据源

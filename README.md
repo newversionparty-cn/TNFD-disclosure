@@ -114,7 +114,7 @@ TNFD v1.0（2023年9月发布）的核心是 **LEAP 方法论**：
 | 阶段 | 英文 | 核心问题 | 主要数据源 |
 |------|------|---------|-----------|
 | **L** | Locate（定位） | 你的资产在哪里？这些地方生态敏感吗？ | WDPA、IBAT、WRI Aqueduct、生态红线 |
-| **E** | Evaluate（评价） | 你的业务依赖哪些自然资本？影响是什么？ | **ENCORE**（核心必用） |
+| **E** | Evaluate（评价） | 你的业务依赖哪些自然资本？影响是什么？ | **WWF BRF + ENCORE**（三层数据体系） |
 | **A** | Assess（评估） | 这些依赖/影响，能转成财务数字吗？ | NGFS 框架 + 替代成本法 |
 | **P** | Prepare（准备） | 如何披露？符合 TNFD 14 项建议吗？ | TNFD v1.0 披露模板 |
 
@@ -135,7 +135,8 @@ TNFD v1.0（2023年9月发布）的核心是 **LEAP 方法论**：
 
 | 数据源 | 用途 | LEAP 阶段 | 免费？ | 备注 |
 |--------|------|-----------|--------|------|
-| **ENCORE** | 依赖度/影响度矩阵 | E, A | 基础版免费 | [官网](https://encorenature.org) |
+| **WWF BRF** | 行业依赖/影响权重（主框架）+ Exposure | E | ✅ 免费 | [官网](https://riskfilter.org/biodiversity) |
+| **ENCORE** | 依赖/影响路径底座 | E, A | 基础版免费 | [官网](https://encorenature.org) |
 | **WDPA** | 保护区数据库 | L | 免费 | UNEP-WCMC |
 | **IBAT** | 综合生物多样性 | L, E | 研究用途免费 | 商业需订阅 |
 | **WRI Aqueduct** | 水风险地图 | L, A | 免费 | [官网](https://www.wri.org/aqueduct) |

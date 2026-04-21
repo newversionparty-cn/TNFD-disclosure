@@ -222,11 +222,13 @@ Metrics and Targets：
 │           │  · 高敏区域重合度清单                                     │
 │           │  · 优先位置识别（Priority Locations）                     │
 ├───────────┼─────────────────────────────────────────────────────────┤
-│  E        │  Input：行业类别、运营地点                                 │
+│  E        │  Input：行业类别、运营地点、供应链节点                    │
 │  Evaluate │  Deliverable：                                           │
-│  评价      │  · ENCORE 依赖度矩阵（按行业）                            │
-│           │  · ENCORE 影响驱动因素（按行业）                          │
-│           │  · 生态系统服务清单                                       │
+│  评价      │  · BRF 自然依赖/影响路径矩阵（WWF × ENCORE 权重）        │
+│           │  · BRF 依赖度系数（0-1）+ 影响度系数（0-1）               │
+│           │  · Sensitivity 主观评分（1-5，利益相关方协商）            │
+│           │  · Exposure 风险敞口评分（ENCORE + WWF 指标加权）          │
+│           │  → 三维输出：依赖度 × Exposure × Sensitivity = 风险等级   │
 ├───────────┼─────────────────────────────────────────────────────────┤
 │  A        │  Input：E阶段输出 + 财务数据                              │
 │  Assess   │  Deliverable：                                           │
@@ -256,8 +258,8 @@ Metrics and Targets：
 │  L1 基础  │ 定性风险热力图 + 影响面积                                 │
 │           │ Skill 能做：✅ 提供方法论 + 数据源                        │
 ├───────────┼─────────────────────────────────────────────────────────┤
-│  L2 进阶  │ ENCORE 依赖度系数 × 行业平均收入估算                      │
-│           │ Skill 能做：✅ ENCORE 数据已集成                          │
+│  L2 进阶  │ BRF 依赖度系数 × Exposure 评分 × 行业平均收入估算        │
+│           │ Skill 能做：✅ BRF + ENCORE + WWF 数据已集成                │
 ├───────────┼─────────────────────────────────────────────────────────┤
 │  L3 高级  │ 替代成本法（找替代水源的成本 = 水风险财务估值）            │
 │           │ Skill 能做：⚠️ 提供方法论，需客户数据验证                  │
@@ -283,10 +285,11 @@ Metrics and Targets：
 │            │    来源：BirdLife+CI+IUCN+UNEP-WCMC                      │
 │            │ ⚠️ 生态红线（中国本土）— 自然资源部，不对外公开            │
 ├───────────┼──────────────────────────────────────────────────────────┤
-│           │ ✅ ENCORE（基础免费/高级付费）                             │
-│  E         │    来源：UNEP-WCMC + Global Canopy，15,000+用户          │
-│  Evaluate  │ ⚠️ IBAT（物种红线、KBA）                                 │
-│  评价       │ ❌ "完全免费"描述有误——基础功能免费，高级功能需订阅      │
+│           │ ✅ BRF（WWF Biodiversity Risk Filter，主框架）             │
+│  E         │    来源：WWF × ENCORE + SBTN，依赖度/影响度权重调整      │
+│  Evaluate  │ ✅ ENCORE（依赖/影响路径，BRF 权重来源）                  │
+│  评价       │ ✅ WWF 70 生物多样性指标（Exposure 量化）                  │
+│            │ 来源：riskfilter.org/biodiversity（2026-04验证）          │
 ├───────────┼──────────────────────────────────────────────────────────┤
 │           │ ✅ ENCORE（驱动因素分析）                                  │
 │  A         │ ✅ WRI Aqueduct（水风险量化）                            │
@@ -303,17 +306,34 @@ Metrics and Targets：
 ✅ 已验证   ⚠️ 部分验证   ❌ 已修正
 ```
 
-### ENCORE 数据说明（修正版）
+### ENCORE + BRF + WWF 三层数据体系（E-phase 核心）
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│ ⚠️ ENCORE 免费说明（修正）                                           │
+│ E 阶段三维数据体系                                                    │
 ├─────────────────────────────────────────────────────────────────────┤
-│ · 基础版：免费注册使用，核心功能可用                                 │
-│ · 高级功能（生物多样性模块等）：需付费订阅                           │
-│ · 数据下载：注册后获取，部分数据集免费                               │
-│ · Biodiversity Module：2025年新增，支持投资组合与全球目标对齐         │
-│ · 来源：encorenature.org（2026-04验证）                             │
+│                                                                      │
+│  【第一层】ENCORE — 依赖/影响路径数据库（底座）                     │
+│  · 直接依赖：生态系统服务（授粉、水源、气候调节等）                  │
+│  · 直接影响：生物物理压力（土地转化、水污染、生物多样性丧失）        │
+│  · 来源：UNEP-WCMC + Global Canopy（encorenature.org）             │
+│  · 用途：提供原始依赖度/影响度基础评分                               │
+│                                                                      │
+│  【第二层】WWF BRF — 权重调整层（中间层）                           │
+│  · WWF 对 ENCORE 评分做了行业权重调整                              │
+│  · 添加了生物多样性状态维度（70 个指标）                            │
+│  · 风险类型：Physical / Regulatory Deficiency / Reputational        │
+│  · 来源：WWF × ENCORE × SBTN（riskfilter.org/biodiversity）        │
+│  · 用途：BRF 输出直接进入 Sensitivity × Exposure 计算              │
+│                                                                      │
+│  【第三层】Sensitivity — 主观评分层（需人工协商）                    │
+│  · 由企业内部 + 利益相关方协商确定（1-5 分）                         │
+│  · 考量：社区依赖度、监管压力、媒体关注、供应链集中度                │
+│  · 来源：企业自评 + 利益相关方访谈                                  │
+│  · 用途：Sensitivity 调节最终风险等级                               │
+│                                                                      │
+│  【输出公式】Risk Level = f(依赖度/影响度, Exposure, Sensitivity)    │
+│  来源验证：WWF BRF Methodology（riskfilter.org/biodiversity，2026-04）│
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -593,14 +613,20 @@ Deliverable：
   · 优先位置识别
 
 【E 阶段 — 评价】
-Input：行业类别（太阳能发电）
-Data Source：
-  · ENCORE（基础免费）：https://encorenature.org/
+Input：行业类别（太阳能发电）、运营地点
+Data Source（三层）：
+  · BRF（主框架）：https://riskfilter.org/biodiversity
     依赖度：水资源（冷却）、土地使用
-    影响度：废水排放、土地硬化、废弃物
+    影响度：土地硬化、废弃物、生物多样性影响
+  · ENCORE（路径底座）：https://encorenature.org/
+    提供原始依赖/影响路径矩阵
+  · WWF 70 指标（Exposure 量化）：土地多样性、淡水质量等
+Sensitivity 评分：需利益相关方协商（1-5）
 Deliverable：
-  · ENCORE 依赖/影响矩阵
-  · 生态系统服务清单
+  · BRF 依赖/影响矩阵（依赖度系数 × 影响度系数）
+  · Exposure 评分（WWF 70 指标加权）
+  · Sensitivity 主观评分（人工）
+  · 综合风险等级（依赖度 × Exposure × Sensitivity）
 
 ⚠️ A 阶段局限性声明：
   合伙人，该量化路径的局限性在于——
@@ -608,6 +634,7 @@ Deliverable：
   Skill 只能提供 L1-L3 的估算路径，L4 精确量化需客户内部数据。
 
 来源标注：
+· WWF BRF Methodology：https://riskfilter.org/biodiversity/explore/data-and-methods
 · TNFD LEAP Guide：https://tnfd.global/publication/additional-guidance-on-assessment-of-nature-related-issues-the-leap-approach/
 · ENCORE：https://encorenature.org/
 ```
@@ -640,6 +667,15 @@ Deliverable：
 ## 版本历史
 
 ```
+v3.1.0（2026-04-21）：
+  ⚠️ E-phase 核心方法论升级（Web 验证）：
+  - BRF（WWF Biodiversity Risk Filter）升级为 E 阶段主框架
+  - ENCORE 降为依赖/影响路径底座（BRF 权重来源）
+  - WWF 70 指标体系作为 Exposure 量化层
+  - 新增 Sensitivity 主观评分维度（1-5，利益相关方协商）
+  - Risk 输出公式：依赖度 × Exposure × Sensitivity = 风险等级
+  - 来源验证：riskfilter.org/biodiversity（2026-04 实测）
+
 v3.0.0（2026-04-19）：
   ⚠️ P0 修正（Web 验证）：
   - 修正 ENCORE "完全免费" 描述 → 基础免费/高级付费

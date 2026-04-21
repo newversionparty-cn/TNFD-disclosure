@@ -114,7 +114,7 @@ TNFD v1.0 (published September 2023) is built on the **LEAP methodology**:
 | Phase | English | Core Question | Primary Data Sources |
 |-------|---------|---------------|----------------------|
 | **L** | Locate | Where are your assets? Are these locations ecologically sensitive? | WDPA, IBAT, WRI Aqueduct, Ecological Red Lines |
-| **E** | Evaluate | Which natural capital do your operations depend on? What impacts do you have? | **ENCORE** (core, required) |
+| **E** | Evaluate | Which natural capital do your operations depend on? What impacts do you have? | **WWF BRF + ENCORE** (three-layer system) |
 | **A** | Assess | Can these dependencies and impacts be translated into financial figures? | NGFS Framework + Replacement Cost Method |
 | **P** | Prepare | How to disclose? Do you meet all 14 TNFD Recommendations? | TNFD v1.0 Disclosure Template |
 
@@ -135,7 +135,8 @@ TNFD v1.0 (published September 2023) is built on the **LEAP methodology**:
 
 | Data Source | Use Case | LEAP Phase | Free? | Notes |
 |-------------|----------|------------|-------|-------|
-| **ENCORE** | Dependency/Impact Matrix | E, A | Basic free | [官网](https://encorenature.org) |
+| **WWF BRF** | Industry dependency/impact weights (primary) + Exposure | E | ✅ Free | [官网](https://riskfilter.org/biodiversity) |
+| **ENCORE** | Dependency/Impact pathway (base layer) | E, A | Basic free | [官网](https://encorenature.org) |
 | **WDPA** | Protected Area Database | L | Free | UNEP-WCMC |
 | **IBAT** | Integrated Biodiversity | L, E | Research free | Commercial requires subscription |
 | **WRI Aqueduct** | Water Risk Atlas | L, A | Free | [官网](https://www.wri.org/aqueduct) |
