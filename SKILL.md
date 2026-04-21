@@ -224,11 +224,12 @@ Metrics and Targets：
 ├───────────┼─────────────────────────────────────────────────────────┤
 │  E        │  Input：行业类别、运营地点、供应链节点                    │
 │  Evaluate │  Deliverable：                                           │
-│  评价      │  · BRF 自然依赖/影响路径矩阵（WWF × ENCORE 权重）        │
+│  评价      │  · BRF 行业依赖/影响权重（应用层，由 ENCORE 原始评分调整） │
+│           │  · ENCORE 原始路径清单（底座数据，支撑 BRF 权重）          │
 │           │  · BRF 依赖度系数（0-1）+ 影响度系数（0-1）               │
+│           │  · Exposure 评分（WWF 70 指标，BRF EXPLORE 量化）          │
 │           │  · Sensitivity 主观评分（1-5，利益相关方协商）            │
-│           │  · Exposure 风险敞口评分（ENCORE + WWF 指标加权）          │
-│           │  → 三维输出：依赖度 × Exposure × Sensitivity = 风险等级   │
+│           │  → Risk Level = BRF_Weighted × Exposure × Sensitivity     │
 ├───────────┼─────────────────────────────────────────────────────────┤
 │  A        │  Input：E阶段输出 + 财务数据                              │
 │  Assess   │  Deliverable：                                           │
@@ -285,11 +286,11 @@ Metrics and Targets：
 │            │    来源：BirdLife+CI+IUCN+UNEP-WCMC                      │
 │            │ ⚠️ 生态红线（中国本土）— 自然资源部，不对外公开            │
 ├───────────┼──────────────────────────────────────────────────────────┤
-│           │ ✅ BRF（WWF Biodiversity Risk Filter，主框架）             │
-│  E         │    来源：WWF × ENCORE + SBTN，依赖度/影响度权重调整      │
-│  Evaluate  │ ✅ ENCORE（依赖/影响路径，BRF 权重来源）                  │
-│  评价       │ ✅ WWF 70 生物多样性指标（Exposure 量化）                  │
-│            │ 来源：riskfilter.org/biodiversity（2026-04验证）          │
+│  E         │ ✅ BRF（WWF Biodiversity Risk Filter，应用层/主框架）       │
+│  Evaluate  │    来源：WWF × ENCORE × SBTN，BRF 由 ENCORE 原始评分调整而来 │
+│  评价       │ ✅ ENCORE（路径底座，BRF 权重来源）                        │
+│            │ ✅ WWF 70 生物多样性指标（BRF EXPLORE，Exposure 量化）       │
+│            │ 来源：riskfilter.org/biodiversity（2026-04验证）             │
 ├───────────┼──────────────────────────────────────────────────────────┤
 │           │ ✅ ENCORE（驱动因素分析）                                  │
 │  A         │ ✅ WRI Aqueduct（水风险量化）                            │
@@ -306,34 +307,37 @@ Metrics and Targets：
 ✅ 已验证   ⚠️ 部分验证   ❌ 已修正
 ```
 
-### ENCORE + BRF + WWF 三层数据体系（E-phase 核心）
+### ENCORE × BRF × Sensitivity：垂直集成架构（E-phase 核心）
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│ E 阶段三维数据体系                                                    │
+│ E 阶段垂直集成架构                                                   │
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                      │
-│  【第一层】ENCORE — 依赖/影响路径数据库（底座）                     │
-│  · 直接依赖：生态系统服务（授粉、水源、气候调节等）                  │
-│  · 直接影响：生物物理压力（土地转化、水污染、生物多样性丧失）        │
-│  · 来源：UNEP-WCMC + Global Canopy（encorenature.org）             │
-│  · 用途：提供原始依赖度/影响度基础评分                               │
+│  【Foundation】ENCORE — 依赖/影响路径底座（上游数据源）              │
+│  · 原始评分：行业在各类生态系统服务上的依赖程度                       │
+│  · 路径描述：哪些生产过程依赖哪些自然资本                             │
+│  · 来源：UNEP-WCMC + Global Canopy（encorenature.org）               │
+│  · 定位：BRF 的上游数据来源，BRF 的评分由 ENCORE 原始评分调整而来     │
 │                                                                      │
-│  【第二层】WWF BRF — 权重调整层（中间层）                           │
-│  · WWF 对 ENCORE 评分做了行业权重调整                              │
-│  · 添加了生物多样性状态维度（70 个指标）                            │
-│  · 风险类型：Physical / Regulatory Deficiency / Reputational        │
-│  · 来源：WWF × ENCORE × SBTN（riskfilter.org/biodiversity）        │
-│  · 用途：BRF 输出直接进入 Sensitivity × Exposure 计算              │
+│  【Application Layer】WWF BRF — 应用层（主框架）                   │
+│  · 权重调整：WWF 对 ENCORE 原始评分做行业定制化调整                   │
+│  · 70 指标：BRF EXPLORE 叠加生物多样性状态量化（Exposure）            │
+│  · 风险分类：Physical / Regulatory Deficiency / Reputational          │
+│  · 来源：WWF × ENCORE × SBTN（riskfilter.org/biodiversity）          │
+│  · 定位：E 阶段的主要分析框架，依赖 ENCORE 提供底层路径数据          │
 │                                                                      │
-│  【第三层】Sensitivity — 主观评分层（需人工协商）                    │
+│  【Human Judgment】Sensitivity — 主观评分层                          │
 │  · 由企业内部 + 利益相关方协商确定（1-5 分）                         │
-│  · 考量：社区依赖度、监管压力、媒体关注、供应链集中度                │
-│  · 来源：企业自评 + 利益相关方访谈                                  │
-│  · 用途：Sensitivity 调节最终风险等级                               │
+│  · 考量：社区依赖度、监管压力、媒体关注、供应链集中度                 │
+│  · 定位：唯一必须人工判定的维度，AI/数据库 不能替代                   │
 │                                                                      │
-│  【输出公式】Risk Level = f(依赖度/影响度, Exposure, Sensitivity)    │
-│  来源验证：WWF BRF Methodology（riskfilter.org/biodiversity，2026-04）│
+│  【Output】Risk Level = f(BRF_Weighted_Score × Exposure × Sensitivity）│
+│                                                                      │
+│  ⚠️ 重要说明：BRF 和 ENCORE 不是平行替代关系                          │
+│  BRF 离了 ENCORE 是无源之水；ENCORE 离了 BRF 缺乏行业权重调整        │
+│  来源验证：BRF INFORM 页面（"derived from ENCORE's direct natural    │
+│  capital risk evaluation"，riskfilter.org/biodiversity，2026-04实测）│
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
