@@ -4,7 +4,42 @@
 
 ---
 
-## \[Unreleased\] · 开发中
+## [Unreleased]
+
+### 优化
+
+- **README 全面重构**：解决定位模糊、快速开始残缺、语言混乱问题
+- **新增"What is this?"模块**：明确 Skill = AI Agent Prompt Library，不是 Python CLI
+- **新增三框架适配说明**：Hermes / Claude Code / OpenClaw 安装方式
+- **新增 A 阶段量化成熟度表**：Skill 能力边界透明化
+- **新增官方参考文献列表**：Big 4 方法论标注待核验，附官方 PDF 链接
+- **新增中国本土化独立章节**：区分《可持续发展报告指引》≠ TNFD
+- **新增数据源说明表**：免费/付费/用途/LEAP 阶段全部对齐
+- **修复 ASCII 方框表格**：全面改用 Markdown 原生表格
+
+### ⚠️ P0 信息准确性修正（Web 验证）
+
+- **修正**：ENCORE "完全免费" → 基础免费/高级付费（来源：encorenature.org 2026-04）
+- **新增**：IBAT 数据源说明 — 商业订阅，Research 有免费额度（来源：ibat-alliance.org 2026-04）
+- **修正**：中国强制披露（可持续发展指引）≠ TNFD
+- **删除**：L1-L4 非官方子阶段编号（标注为"基于官方框架的自定义拆解"）
+- **标注**：Big 4 方法论标记为"⚠️ 待核验"
+
+### 🆕 PRD v2.0 架构重构
+
+- **新增**：Definition Engine（TNFD vs TCFD 核心区别 — 来源验证）
+- **新增**：LEAP 交付物指南（Input + Deliverable 格式）
+- **新增**：A 阶段量化成熟度（L1-L4 分层）
+- **新增**：S3 顾问高压对话协议（溯源免死、禁止废话、防御性交付）
+- **新增**：数据源 × LEAP 阶段映射表（Web 验证版）
+- **修正**：中国政策现状（可持续发展报告指引 ≠ TNFD）
+
+### 🆕 官方数据源清单
+
+- TNFD v1.0 中文 PDF（含下载链接）
+- ENCORE：Biodiversity Module（2025年新增）
+- IBAT：三大数据集（WDPA 303,313个保护区 / IUCN 166,045物种 / KBA 16,495个）
+- 验证状态标注 · 开发中
 
 ### 计划中
 
@@ -16,7 +51,37 @@
 
 ---
 
-## \[1.0.0\] · 2026-04-19 · V1 首发
+## [2.0.0] · 2026-04-19 · v2 重大更新：PUA 行为控制系统
+
+### 新增
+
+**/tnfd 指令系统**
+- 13 条指令：/tnfd new/status/kpi/benchmark/locate/evaluate/assess/prepare/audit/report/save/reset
+- LEAP 流程全覆盖（Phase 0-5）
+- 状态持久化（~/.tnfd/project-state.json）
+- Sprint Banner + KPI 卡格式化输出
+
+**TNFD PUA Handler**
+- scripts/tnfd_handler.py — 状态管理 + Banner 输出 + KPI 卡
+- ~/.tnfd/config.json — 用户配置
+- ~/.tnfd/commands.json — 指令定义
+- ~/.tnfd/project-state.json — 项目状态
+
+**PUA 行为控制**
+- Sprint Banner：Unicode 方框进度条
+- KPI 卡：绩效报告卡
+- 主动触发：阶段完成/风险发现/数据质量问题提醒
+- 失败升级：L1-L4 压力升级
+
+### 优化
+
+- SKILL.md 全面重构，整合 PUA 指令系统
+- README.md 新增 /tnfd 指令系统说明
+- 安装流程更新（新增 Handler 安装步骤）
+
+---
+
+## [1.0.0] · 2026-04-19 · V1 首发
 
 ### 新增
 
