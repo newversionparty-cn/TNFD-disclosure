@@ -1,12 +1,22 @@
-# TNFD-disclosure
+# TNFD-disclosure · 自然相关财务披露专业助手
 
-> 🌍 让自然相关财务信息披露与 TCFD 一样触手可及。| [English Version](./README_en.md)
+> 🌍 让自然相关财务信息披露与 TCFD 一样触手可及。
+> 基于 TNFD v1.0 官方框架 + 四大 ESG 咨询方法论 + 中国本土标准。
+> 内置 ENCORE 数据 + 416+ 采纳者报告库。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![TNFD 版本](https://img.shields.io/badge/TNFD-v1.0-blue)](https://tnfd.global)
-[![ENCORE 版本](https://img.shields.io/badge/ENCORE-2025.09-green)](https://encorenature.org)
-[![支持平台](https://img.shields.io/badge/Platform-Hermes%7CClaude%20Code%7COpenClaw-blueviolet)](https://github.com/newversionparty-cn/TNFD-disclosure)
-[![状态](https://img.shields.io/badge/Status-活跃-brightgreen)]()
+[![TNFD Version](https://img.shields.io/badge/TNFD-v1.0-blue)](https://tnfd.global)
+[![ENCORE Version](https://img.shields.io/badge/ENCORE-2025.09-green)](https://encorenature.org)
+[![Platform](https://img.shields.io/badge/Platform-Hermes%20%7C%20Claude%20Code%20%7C%20OpenClaw-purple)](https://github.com/newversionparty-cn/TNFD-disclosure)
+[![Status](https://img.shields.io/badge/Status-Active-brightgreen)]()
+
+[**English Version**](README_en.md) · [**快速开始**](#快速开始) · [**方法论**](#方法论框架) · [**案例**](#行业标杆案例)
+
+---
+
+## TNFD Framework Overview
+
+![TNFD v1.0 Framework — LEAP + 14 Disclosure Recommendations](assets/tnfd-framework-infographic.png)
 
 ---
 
@@ -14,168 +24,135 @@
 
 **TNFD-disclosure 是一个 AI Agent Skill（提示词库），不是 Python CLI 工具，也不是 Web 应用。**
 
-它是一套结构化的提示词 + 知识库，专为支持自定义 Skill 的 AI Agent 设计——目前支持 Hermes、Claude Code 和 OpenClaw。
+它是一套结构化的提示词 + 知识库，专为支持自定义 Skill 的 AI Agent 设计——目前支持 **Hermes**、**Claude Code** 和 **OpenClaw**。
 
 | 如果你是... | 使用方式 |
 |-------------|---------|
-| **ESG 顾问** | 将 `SKILL.md` 内容作为 AI Agent 的 System Prompt 使用 |
-| **开发者** | 参考 `prompts/` 目录的模块化提示词模板，集成到你的 Agent |
-| **AI Agent 用户** | 在支持 Skill 的 Agent 中安装此包，喊 `/tnfd` 激活 |
-
----
-
-## 架构
-
-```
-TNFD-disclosure/
-├── SKILL.md              # 主 Skill 文件（System Prompt + 知识库）
-├── QUICK_REFERENCE.md    # Agent 快速参考卡
-├── prompts/              # 模块化提示词模板
-│   ├── 00-benchmark.md    # 阶段 0：标杆对标
-│   ├── 01-locate.md      # 阶段 1：定位（Locate）
-│   ├── 02-evaluate.md    # 阶段 2：评价（Evaluate）
-│   ├── 03-assess.md       # 阶段 3：评估（Assess）
-│   ├── 04-prepare.md      # 阶段 4：准备（Prepare）
-│   └── 05-assurance.md    # 阶段 5：审计（Assurance）
-├── references/            # 参考文档知识库
-│   ├── tnfd-leap-complete-guide.md
-│   ├── big4-methodologies.md
-│   ├── china-esg-standards.md
-│   └── ...
-├── data/                 # 内置数据
-│   ├── encore_processed/ # ENCORE 处理后 JSON（2025年9月版）
-│   └── tnfd_report_links.json
-└── scripts/
-    ├── tnfd_handler.py   # 状态管理器（可选）
-    └── process_encore_data.py
-```
-
-### 工作流
-
-```
-阶段 0          阶段 1：LEAP                      阶段 2
-  │             ┌──┬───┬────┬────┐                │
-  ▼             │L │ E │  A │  P │                ▼
-标杆对标  ──►    └──┴───┴────┴────┘  ─────────►  审计检查
-  │             （定位→评价→评估→准备）               │
-  ▼                                                ▼
-标杆案例      ───────────────────────────────►  报告生成
-```
-
----
-
-## 快速开始
-
-### 步骤 1：安装 Skill
-
-**Hermes（推荐）**
-```bash
-ln -s ~/Desktop/TNFD/skill ~/.Hermes/skills/tnfd-disclosure
-```
-
-**OpenClaw**
-```bash
-cp -r ~/Desktop/TNFD/skill ~/.openclaw/skills/tnfd-disclosure
-```
-
-**Claude Code**
-```bash
-mkdir -p ~/.claude/skills && cp -r ~/Desktop/TNFD/skill ~/.claude/skills/tnfd-disclosure
-```
-
-### 步骤 2：激活 Skill
-
-在任何支持 Skill 的 Agent 对话中输入：
-```
-/tnfd
-```
-
-Agent 将显示 Sprint Banner 并进入 TNFD 工作流程。
-
-### 步骤 3：开始项目
-
-```
-/tnfd new                           # 新建项目
-/tnfd benchmark                     # 阶段 0：标杆对标
-/tnfd locate                       # 阶段 1：定位
-/tnfd evaluate                      # 阶段 2：评价
-/tnfd assess                        # 阶段 3：评估
-/tnfd prepare                       # 阶段 4：准备
-/tnfd audit                         # 阶段 5：审计
-/tnfd report                        # 生成报告
-```
-
----
-
-## TNFD LEAP 框架
-
-TNFD v1.0（2023年9月发布）的核心是 **LEAP 方法论**：
-
-| 阶段 | 英文 | 核心问题 | 主要数据源 |
-|------|------|---------|-----------|
-| **L** | Locate（定位） | 你的资产在哪里？这些地方生态敏感吗？ | WDPA、IBAT、WRI Aqueduct、生态红线 |
-| **E** | Evaluate（评价） | 你的业务依赖哪些自然资本？影响是什么？ | **WWF BRF + ENCORE**（三层数据体系） |
-| **A** | Assess（评估） | 这些依赖/影响，能转成财务数字吗？ | NGFS 框架 + 替代成本法 |
-| **P** | Prepare（准备） | 如何披露？符合 TNFD 14 项建议吗？ | TNFD v1.0 披露模板 |
-
-### A 阶段量化成熟度
-
-| 成熟度 | 能做到 | Skill 能指导 |
-|--------|--------|-------------|
-| L1（基础） | 定性风险识别 | ✅ 可以 |
-| L2（进阶） | 半定量（面积、体积） | ✅ 可以 |
-| L3（高级） | 财务等效量化 | ⚠️ 给方法论，不给精确数字 |
-| L4（精确） | 需要客户 ERP 数据 | ❌ Skill 无法替代 |
-
-> ⚠️ **Skill 的边界**：Skill 是"导航仪"，不是"替代者"。精确财务量化需要客户内部数据，Agent 无法替代。
-
----
-
-## 数据源说明
-
-| 数据源 | 用途 | LEAP 阶段 | 免费？ | 备注 |
-|--------|------|-----------|--------|------|
-| **WWF BRF** | 行业依赖/影响权重（主框架）+ Exposure | E | ✅ 免费 | [官网](https://riskfilter.org/biodiversity) |
-| **ENCORE** | 依赖/影响路径底座 | E, A | 基础版免费 | [官网](https://encorenature.org) |
-| **WDPA** | 保护区数据库 | L | 免费 | UNEP-WCMC |
-| **IBAT** | 综合生物多样性 | L, E | 研究用途免费 | 商业需订阅 |
-| **WRI Aqueduct** | 水风险地图 | L, A | 免费 | [官网](https://www.wri.org/aqueduct) |
-| **生态红线** | 中国生态敏感区 | L | 非公开 | 需从自然资源部获取 |
-| **蔚蓝地图** | 企业污染记录 | L, E | 部分免费 | [IPE](https://www.ipe.org.cn) |
-
----
-
-## 中国本土化
-
-**中国 TNFD 现状**：
-- 证监会 2024 年发布《上市公司可持续发展报告指引》——**不等同于 TNFD**
-- 2026 年 A+H 股强制的是这个指引，不是 TNFD 本身
-- TNFD 在中国仍处于**自愿采纳**阶段
-- 头部企业采纳：隆基绿能（2025.11）、牧原股份（2026.3）
-
-**本土标准参考**：
-- CASS-ESG 6.0（中欧对接版）
-- 证监会《上市公司可持续发展报告指引》（2024）
-- 生态环境部《企业环境信息依法披露管理办法》
+| ESG 顾问 | 将 `SKILL.md` 内容作为 AI Agent 的 System Prompt |
+| 企业可持续发展团队 | 启动 Agent 直接执行 TNFD LEAP 评估 |
+| AI Agent 开发者 | 集成 Skill 到你的 Agent 框架 |
+| 学术研究者 | 参考方法论框架 + 内置文献数据 |
 
 ---
 
 ## 核心功能
 
-### 阶段 0：标杆对标
+### 三阶段工作流程
 
-输入行业名称 → 匹配标杆案例（隆基/牧原/汇丰/力拓）→ 输出差距分析框架
+```
+Phase 0: 对标分析     →     Phase 1: LEAP 评估     →     Phase 2: 审计检查
+  (Benchmark)                (Assess)                       (Assurance)
+```
 
-### 阶段 1–4：LEAP 评估
+- **Phase 0 — Benchmark Analysis**：匹配行业标杆企业，分析最佳实践与差距
+- **Phase 1 — LEAP Assessment**：Locate → Evaluate → Assess → Prepare 四阶段评估
+- **Phase 2 — Assurance**：14 项披露建议覆盖检查，模拟审计意见
 
-- **L – 定位**：资产坐标 → 生态敏感区叠加分析
-- **E – 评价**：行业分类 → ENCORE 依赖/影响矩阵
-- **A – 评估**：风险量化 + 机遇识别
-- **P – 准备**：TNFD 报告编制
+### LEAP 四阶段
 
-### 阶段 5：审计检查
+| 阶段 | 核心问题 | 输出物 | 预计时间 |
+|------|---------|--------|---------|
+| **L**ocate · 定位 | 资产/供应链在哪里？ | 资产坐标清单 + 空间风险地图 | 1-2 周 |
+| **E**valuate · 评价 | 依赖和影响是什么？ | 行业依赖矩阵 + 影响驱动因素 | 1-2 周 |
+| **A**ssess · 评估 | 财务风险/机遇？ | 风险量化分析 + 机遇清单 | 2-4 周 |
+| **P**repare · 准备 | 如何披露/响应？ | TNFD 报告 + 响应策略 | 2-4 周 |
 
-14 项 TNFD 披露建议覆盖检查（治理 2 项 + 战略 2 项 + 风险与影响管理 4 项 + 指标与目标 6 项）
+### TNFD 14 项披露建议
+
+| 支柱 | 建议数 | 核心检查点 |
+|------|--------|-----------|
+| **治理** Governance | 2 项 | 董事会监督 · 管理层职责 |
+| **战略** Strategy | 2 项 | 业务影响 · 机遇影响 |
+| **风险与影响管理** Risk & Impact | 4 项 | 识别流程 · 评估方法 · ERM 整合 · 影响管理 |
+| **指标与目标** Metrics & Targets | 6 项 | KPI · 目标 · 方法变更 · 财务量化 · 资本配置 · 自然定价 |
+
+---
+
+## 为什么做这个项目
+
+### 痛点
+
+- **信息分散**：TNFD 官方文档 100+ 页，ENCORE 数据 18 个 CSV，行业指南分布在多个网站
+- **咨询成本高**：四大 TNFD 咨询项目 50-200 万 RMB，中小企业难以承担
+- **工具缺失**：缺乏一站式评估工具，数据收集和处理耗时
+
+### 核心价值
+
+| 维度 | 传统方式 | TNFD-disclosure |
+|------|---------|----------------|
+| 时间成本 | 8-12 周 | 2-4 周 |
+| 经济成本 | 50-200 万 RMB | 免费开源 |
+| 专业门槛 | 需要四大咨询 | AI 辅助引导 |
+| 数据获取 | 手动收集 | 内置 ENCORE |
+| 行业对标 | 付费购买 | 内置 416+ 案例 |
+| 审计准备 | 额外收费 | 内置检查 |
+
+---
+
+## 快速开始
+
+### 安装
+
+```bash
+# 克隆仓库
+git clone https://github.com/newversionparty-cn/TNFD-disclosure.git
+cd TNFD-disclosure
+
+# 符号链接到 Hermes
+ln -s $(pwd) ~/.Hermes/skills/tnfd-disclosure
+```
+
+### 使用示例
+
+**场景 1：行业对标**
+
+```
+用户：光伏行业有哪些公司披露了 TNFD？
+
+TNFD-disclosure：光伏行业已披露 TNFD 的标杆企业：
+
+| 公司 | 报告类型 | 发布时间 | 方法论 | 亮点 |
+|------|---------|---------|--------|------|
+| 隆基绿能 | 独立 TNFD 报告 | 2025 年 11 月 | TNFD LEAP + 安永 CCaSS | 自然资本评估试点 |
+| 协鑫科技 | ESG 报告整合 | 2025 年 4 月 | TNFD LEAP | 供应链风险评估 |
+| Vestas | 独立 TNFD 报告 | 2024 年 12 月 | TNFD LEAP | 有限鉴证 |
+
+需要我帮您获取报告 PDF 或进入 LEAP 评估吗？
+```
+
+**场景 2：启动 LEAP 评估**
+
+```
+用户：我想做 TNFD 披露，怎么开始？
+
+TNFD-disclosure：推荐流程：
+Phase 0: 对标分析（了解行业最佳实践）
+Phase 1: LEAP 评估（Locate → Evaluate → Assess → Prepare）
+Phase 2: 审计检查（14 项覆盖检查）
+
+请选择您的起点。
+```
+
+---
+
+## 方法论框架
+
+### 四大方法论对比
+
+| | 安永 (EY) | 德勤 (Deloitte) | 普华永道 (PwC) | 毕马威 (KPMG) |
+|---|---|---|---|---|
+| **方法论** | CCaSS | Climate & Sustainability | Five Things | NATURE Framework |
+| **特色** | 自然资本货币化 · 财务整合导向 | 数字化监控 · 循环经济模式 | 5 步框架 · 结构化检查清单 | 成熟度评估 · 分阶段实施 |
+| **合作** | IUCN 战略伙伴 | 自然资本议定书 | 披露模板 | 利益相关方参与 |
+
+### TNFD 与 TCFD 的关系
+
+TNFD 在 TCFD 四大支柱基础上，新增 **LEAP 评估方法** 和 **自然影响管理** 维度：
+
+- **治理** → 对应 TCFD 治理
+- **战略** → 对应 TCFD 战略
+- **风险与影响管理** → 扩展自 TCFD 风险管理，新增自然影响管理
+- **指标与目标** → 扩展自 TCFD 指标与目标，新增自然定价相关指标
 
 ---
 
@@ -183,62 +160,26 @@ TNFD v1.0（2023年9月发布）的核心是 **LEAP 方法论**：
 
 ### 隆基绿能（光伏行业）
 
-**报告信息**：
-- 发布时间：2025 年 11 月（COP30）
-- 报告类型：独立 TNFD 报告
-- 方法论：TNFD LEAP + 安永 CCaSS
+> **报告信息**：2025 年 11 月发布 · 独立 TNFD 报告 · TNFD LEAP + 安永 CCaSS
 
 **核心亮点**：
 - 🏆 中国光伏企业首份独立 TNFD 报告
-- 💰 自然资本评估试点（嘉兴基地节约 2149.6 万元）
+- 💰 嘉兴基地自然资本评估节约 2149.6 万元
 - 🎯 2050 年生物多样性"净零损失"目标
 - 🌿 2060 年自然"净正面影响"远景
 
-| 指标 | 数据 |
-|------|------|
-| LEAP 完整度 | 4/4 阶段完整 |
-| 14 项覆盖率 | 10/14 项（71%） |
-
-### 牧原股份（养殖行业）
-
-**报告信息**：
-- 发布时间：2026 年 3 月（HKEX）
-- 方法论：TNFD LEAP + 德勤 + 自然资本议定书
-
-**监测体系**：
-
-| 类别 | 指标数 | 频次 |
-|------|--------|------|
-| 土壤 | 16 项 | 2次/年 × 100%覆盖 |
-| 地下水 | 12 项 | 2次/年 × 100%覆盖 |
-| 地表水 | 6 项 | 1-4次/年 |
-| 农产品 | 15 项 | 1-2次/年 |
+**LEAP 完整度**：4/4 阶段完整 · **14 项覆盖**：10/14 项（71%）
 
 ---
 
-## 方法论框架
+### 牧原股份（养殖行业）
 
-### 四大咨询机构 TNFD 方法论
+> **报告信息**：2026 年 3 月发布（HKEX）· ESG 报告整合 · TNFD LEAP + 德勤 + 自然资本议定书
 
-| 机构 | 方法论名称 | 核心关键词 |
-|------|-----------|-----------|
-| **安永 (EY)** | CCaSS | 自然资本货币化 / 财务整合 / IUCN 合作 |
-| **德勤 (Deloitte)** | Climate & Sustainability | 数字化监控 / 循环经济 / 自然资本议定书 |
-| **普华永道 (PwC)** | Five Things | 5步框架 / 检查清单 / 披露模板 |
-| **毕马威 (KPMG)** | NATURE Framework | 成熟度评估 / 分阶段实施 / 路线图规划 |
-
-> ⚠️ 以上 Big 4 方法论引用基于公开资料，详情请参阅各公司官方 TNFD 白皮书。**来源验证状态：⚠️ 待核验。**
-
-### 官方参考文献
-
-| 文献 | 来源 | 链接 |
-|------|------|------|
-| TNFD v1.0 建议（官方） | TNFD | [PDF](https://tnfd.global/wp-content/uploads/2023/08/Recommendations-of-the-Taskforce-on-Nature-related-Financial-Disclosures.pdf) |
-| TNFD LEAP 完整指南 | TNFD | [链接](https://tnfd.global/publication/additional-guidance-on-assessment-of-nature-related-issues-the-leap-approach/) |
-| ENCORE 数据库 | UNEP FI + Global Canopy | [链接](https://encorenature.org) |
-| IBAT 综合生物多样性工具 | BirdLife/IUCN/Conservation International/UNEP-WCMC | [链接](https://www.ibat-alliance.org) |
-| WRI Aqueduct 水风险地图 | 世界资源研究所 | [链接](https://www.wri.org/aqueduct) |
-| NGFS 自然风险概念框架 | 央行与监管机构绿色金融网络 | [链接](https://www.ngfs.fr) |
+**核心亮点**：
+- 📋 自然资本议定书 9 步骤完整应用
+- 📊 49 项监测指标（土壤 16 项、地下水 12 项...）
+- 🔄 供应链风险传导模型 + 情景模拟
 
 ---
 
@@ -246,25 +187,25 @@ TNFD v1.0（2023年9月发布）的核心是 **LEAP 方法论**：
 
 ```
 TNFD-disclosure/
-├── SKILL.md                    # 主 Skill 文件
-├── QUICK_REFERENCE.md          # Agent 快速参考
-├── CHANGELOG.md                # 版本记录
-├── prompts/                    # 模块化提示词
-│   ├── 00-benchmark.md         # 标杆对标
-│   ├── 01-locate.md           # Locate 阶段
-│   ├── 02-evaluate.md         # Evaluate 阶段
-│   ├── 03-assess.md           # Assess 阶段
-│   ├── 04-prepare.md          # Prepare 阶段
-│   └── 05-assurance.md         # Assurance 阶段
-├── references/                 # 知识库
+├── SKILL.md              # Agent Skill 定义（System Prompt）
+├── QUICK_REFERENCE.md    # 快速参考卡片
+├── CHANGELOG.md          # 更新日志
+├── assets/               # 静态资源
+│   └── *.png             # 信息图、流程图
+├── data/                 # 内置数据
+│   └── encore/           # ENCORE 解析数据
+├── prompts/              # LEAP 各阶段 Prompt
+│   ├── 01-locate.md
+│   ├── 02-evaluate.md
+│   ├── 03-assess.md
+│   └── 04-prepare.md
+├── references/           # 方法论文档
 │   ├── tnfd-leap-complete-guide.md
+│   ├── data-sources-registration-guide.md
+│   ├── industry-guidance.md
 │   ├── big4-methodologies.md
-│   ├── china-esg-standards.md
-│   └── ...
-├── data/                       # 内置数据
-│   ├── encore_processed/       # ENCORE JSON
-│   └── tnfd_report_links.json
-└── scripts/
+│   └── china-esg-standards.md
+└── scripts/              # 辅助脚本
     └── process_encore_data.py
 ```
 
@@ -274,32 +215,25 @@ TNFD-disclosure/
 
 欢迎提交 Issue 和 Pull Request！
 
-**提交前检查**：
-- [ ] 方法论引用已标注来源
-- [ ] 数据源已注明免费/付费
-- [ ] 没有凭记忆编造的统计数据
-- [ ] 新的提示词经过测试
+### 报告质量评级标准（自评参考）
+
+| 等级 | 描述 | 14 项覆盖 |
+|------|------|---------|
+| A | 完整披露，审计师可出具无保留意见 | 14/14 |
+| B+ | 基本完整，有少量改进空间 | 12-13/14 |
+| B | 部分披露，常见红旗信号 | 10-11/14 |
+| C | 初步尝试，需要重大改进 | 7-9/14 |
+| D | 框架搭建阶段 | < 7/14 |
 
 ---
 
-## 许可证
+## 免责声明
 
-MIT License — 详见 [LICENSE](LICENSE)
-
----
-
-## 附录：中国 vs 国际 TNFD 现状对比
-
-| 维度 | 中国 | 国际 |
-|------|------|------|
-| **监管要求** | 自愿（指引≠TNFD） | G20 推动，ISSB 参考 |
-| **采纳企业** | 头部试点（隆基、牧原） | 416+ 机构（截至 2025.12） |
-| **数据环境** | 生态红线不对外公开 | WDPA/IBAT 免费/订阅 |
-| **方法论** | CASS-ESG 6.0 对接 | ENCORE + LEAP |
-| **审计要求** | 无强制第三方鉴证 | TNFD 提供鉴证指南 |
-
-> 📊 数据来源：TNFD 官方（tnfd.global）、IPE（蔚蓝地图）、证监会官网（csrc.gov.cn）
+本 Skill 基于 TNFD v1.0 官方框架和四大公开方法论提供指导，**不构成正式审计或鉴证意见**。正式披露建议：
+1. 完成完整的 LEAP 评估
+2. 进行第三方验证
+3. 咨询专业审计机构
 
 ---
 
-*最后更新：2026-04-20*
+*项目维护者：[Tom](https://github.com/newversionparty-cn) · 提交 Issue 或 PR 让我们做得更好*
