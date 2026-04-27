@@ -1,0 +1,384 @@
+{
+  "source": "WWF Biodiversity Risk Filter - Single Site Analysis",
+  "url": "https://riskfilter.org/biodiversity/analyse/single-site-details",
+  "description": "BRF 单点位分析的真实输出格式。包含62个指标，按Physical Risk / Regulatory Deficiency Risk / Reputational Risk 三类组织，评分1-5（5最严重），-333表示不适用于该行业，-999表示数据不可用。",
+  "score_legend": {
+    "1": "Very Low Risk（几乎无风险）",
+    "2": "Low Risk（低风险）",
+    "3": "Medium Risk（中等风险）",
+    "4": "High Risk（高风险）",
+    "5": "Very High Risk（极高风险）",
+    "-333": "Not Applicable（该指标对该经济活动不适用）",
+    "-999": "Data Not Available（数据不可用/无法评估）"
+  },
+
+  "risk_categories": {
+    "physical_risk": {
+      "label": "Physical Risk",
+      "scoring_range": "1-5 (higher = more risk)",
+      "score_null": "-333 (not applicable to industry)",
+      "indicators": {
+        "1_provisioning_services": {
+          "name": "Provisioning Services",
+          "description": "生态系统提供物质资源的能力",
+          "sub_indicators": {
+            "1_1_water_availability": {
+              "label": "1.1 Water Availability",
+              "example_score": 3,
+              "example_industry": "Construction Materials"
+            },
+            "1_2_forest_productivity": {
+              "label": "1.2 Forest Productivity and Distance to Markets",
+              "example_score": 3
+            },
+            "1_3_marine_fish": {
+              "label": "1.3 Marine Fish Availability",
+              "example_score": -333,
+              "note": "不适用于建筑业"
+            },
+            "1_4_wild_flora_fauna": {
+              "label": "1.4 Wild Flora & Fauna Availability",
+              "example_score": -333,
+              "note": "不适用于建筑业"
+            }
+          }
+        },
+        "2_regulating_supporting": {
+          "name": "Regulating & Supporting Services - Enabling",
+          "sub_indicators": {
+            "2_1_soil_condition": {
+              "label": "2.1 Soil Condition",
+              "example_score": -333
+            },
+            "2_2_water_quality": {
+              "label": "2.2 Water Quality",
+              "example_score": 2
+            },
+            "2_3_air_quality": {
+              "label": "2.3 Air Quality",
+              "example_score": 3
+            },
+            "2_4_ecosystem_degraded": {
+              "label": "2.4 Ecosystem Condition (Degraded)",
+              "example_score": -333
+            },
+            "2_5_pollination": {
+              "label": "2.5 Pollination",
+              "example_score": -333
+            }
+          }
+        },
+        "3_regulating_mitigating": {
+          "name": "Regulating Services - Mitigating",
+          "sub_indicators": {
+            "3_1_landslides": {
+              "label": "3.1 Landslides",
+              "example_score": 3
+            },
+            "3_2_wildfires": {
+              "label": "3.2 Wildfires",
+              "example_score": 3
+            },
+            "3_3_diseases": {
+              "label": "3.3 Diseases",
+              "example_score": 5,
+              "note": "疾病风险极高（5分）"
+            },
+            "3_4_herbicide_resistance": {
+              "label": "3.4 Herbicide Resistance",
+              "example_score": -333
+            },
+            "3_5_extreme_heat": {
+              "label": "3.5 Extreme Heat",
+              "example_score": 2
+            },
+            "3_6_tropical_cyclones": {
+              "label": "3.6 Tropical Cyclones",
+              "example_score": -999,
+              "note": "数据不可用（目标地点不在热带气旋路径区）"
+            },
+            "3_7_flooding": {
+              "label": "3.7 Flooding",
+              "example_score": 3
+            }
+          }
+        },
+        "4_cultural_services": {
+          "name": "Cultural Services",
+          "sub_indicators": {
+            "4_1_natural_cultural_resources": {
+              "label": "4.1 Natural & Cultural Resources",
+              "example_score": -333
+            }
+          }
+        }
+      },
+      "physical_risk_formula": "Physical Risk Score = Σ(applicable indicators × industry weight) / count(applicable indicators)"
+    },
+
+    "regulatory_deficiency_risk": {
+      "label": "Regulatory Deficiency Risk",
+      "description": "评估东道国生物多样性法律框架的完整性。分值越高表示法律框架越薄弱（风险越高）。",
+      "sub_categories": {
+        "5_application": {
+          "label": "5. Application",
+          "sub_indicators": {
+            "5_1_nbsap": {
+              "label": "5.1 Status of National Biodiversity Strategies and Action Plans (NBSAP)",
+              "example_score": 2
+            },
+            "5_2_biodiversity_law": {
+              "label": "5.2 Biodiversity Conservation Policy Statement in Law",
+              "example_score": 2
+            }
+          }
+        },
+        "6_scoping": {
+          "label": "6. Scoping",
+          "sub_indicators": {
+            "6_1_definition_biodiversity": {
+              "label": "6.1 Definition of Biodiversity",
+              "example_score": 3
+            },
+            "6_2_definition_fauna": {
+              "label": "6.2 Definition of Wild Fauna",
+              "example_score": 3
+            },
+            "6_3_definition_flora": {
+              "label": "6.3 Definition of Wild Flora",
+              "example_score": 1
+            },
+            "6_4_definition_protected_areas": {
+              "label": "6.4 Definition of Protected Areas",
+              "example_score": 1
+            },
+            "6_5_definition_corridors": {
+              "label": "6.5 Definition of Ecological Corridors and Networks",
+              "example_score": 4
+            },
+            "6_6_definition_invasive_species": {
+              "label": "6.6 Definition of Invasive Alien Species",
+              "example_score": 4
+            },
+            "6_7_definition_threatened_species": {
+              "label": "6.7 Definition of a Threatened Species",
+              "example_score": 4
+            }
+          }
+        },
+        "7_rights_access": {
+          "label": "7. Rights, Access and Entitlement",
+          "sub_indicators": {
+            "7_1_state_duty_protect": {
+              "label": "7.1 State's Duty to Protect and Conserve Biodiversity",
+              "example_score": 3
+            }
+          }
+        },
+        "8_institutions": {
+          "label": "8. Institutions and Governance",
+          "sub_indicators": {
+            "8_1_biodiversity_authority": {
+              "label": "8.1 Biodiversity Management Authority",
+              "example_score": 1
+            },
+            "8_2_coordination_national": {
+              "label": "8.2 Coordination among National Government Authorities",
+              "example_score": 2
+            },
+            "8_3_public_participation": {
+              "label": "8.3 Public Participation",
+              "example_score": 3
+            }
+          }
+        },
+        "9_management_instruments": {
+          "label": "9. Management Instruments",
+          "sub_indicators": {
+            "9_1_monitoring": {
+              "label": "9.1 Monitoring of Biodiversity",
+              "example_score": 1
+            },
+            "9_2_data_sharing": {
+              "label": "9.2 Data Compilation and Sharing - National Level",
+              "example_score": 1
+            },
+            "9_3_eia_sea": {
+              "label": "9.3 Environmental Impact Assessments (EIA) and Strategic Environmental Assessments (SEA)",
+              "example_score": 1
+            },
+            "9_4_offset_requirements": {
+              "label": "9.4 Offset Requirements",
+              "example_score": 4
+            },
+            "9_5_protected_areas": {
+              "label": "9.5 Protected Areas",
+              "example_score": 4
+            },
+            "9_6_protected_species_management": {
+              "label": "9.6 Protected Species Management",
+              "example_score": 2
+            }
+          }
+        },
+        "10_subnational": {
+          "label": "10. Subnational Biodiversity Law",
+          "sub_indicators": {
+            "10_1_national_standards": {
+              "label": "10.1 Requirement to Meet National Standards",
+              "example_score": 2
+            },
+            "10_2_coordination_local_national": {
+              "label": "10.2 Coordination Among Local and National Authorities",
+              "example_score": 2
+            }
+          }
+        },
+        "11_offenses_penalties": {
+          "label": "11. Offenses and Penalties",
+          "sub_indicators": {
+            "11_1_pollution_crimes": {
+              "label": "11.1 Pollution Crimes",
+              "example_score": 1
+            },
+            "11_2_habitat_destruction": {
+              "label": "11.2 Habitat Destruction",
+              "example_score": 1
+            },
+            "11_3_invasive_species_prohibitions": {
+              "label": "11.3 Violation of invasive species prohibitions",
+              "example_score": 1
+            },
+            "11_4_eia_violations": {
+              "label": "11.4 Violation of EIA requirements",
+              "example_score": 2
+            }
+          }
+        },
+        "12_implementation": {
+          "label": "12. Implementation",
+          "sub_indicators": {
+            "12_1_policy_formulation": {
+              "label": "12.1 Effective Policy Formulation",
+              "example_score": 3
+            },
+            "12_2_respect_of_institutions": {
+              "label": "12.2 Respect of Institutions",
+              "example_score": 3
+            }
+          }
+        }
+      },
+      "total_indicators": 27,
+      "interpretation": "Regulatory Deficiency Risk 的分值反映东道国法律框架的薄弱程度。分值高（4-5）不代表企业违法，而是该国在特定领域的法律框架存在缺陷，可能给企业带来政策不确定性或合规风险。"
+    },
+
+    "reputational_risk": {
+      "label": "Reputational Risk",
+      "description": "评估企业活动所在地区面临的生物多样性外部压力和媒体/社会关注度。",
+      "sub_categories": {
+        "13_pressures": {
+          "label": "13. Pressures on Biodiversity",
+          "sub_indicators": {
+            "13_1_land_use_change": {
+              "label": "13.1 Land, Freshwater and Sea Use Change",
+              "example_score": 1
+            },
+            "13_2_forest_canopy_loss": {
+              "label": "13.2 Forest Canopy Loss",
+              "example_score": 3
+            },
+            "13_3_invasive_species": {
+              "label": "13.3 Invasive Species",
+              "example_score": 2
+            },
+            "13_4_pollution": {
+              "label": "13.4 Pollution",
+              "example_score": 4
+            }
+          }
+        },
+        "14_environmental_factors": {
+          "label": "14. Environmental Factors",
+          "sub_indicators": {
+            "14_1_protected_conserved_areas": {
+              "label": "14.1 Protected/Conserved Areas",
+              "example_score": 2
+            },
+            "14_2_kba": {
+              "label": "14.2 Key Biodiversity Areas",
+              "example_score": 2
+            },
+            "14_3_ramsar_wetlands": {
+              "label": "14.3 Wetlands of International Importance",
+              "example_score": 3
+            },
+            "14_4_other_delineated_areas": {
+              "label": "14.4 Other Important Delineated Areas",
+              "example_score": 2
+            },
+            "14_5_ecosystem_intact": {
+              "label": "14.5 Ecosystem Condition (Intact)",
+              "example_score": 2
+            },
+            "14_6_range_rarity": {
+              "label": "14.6 Range Rarity",
+              "example_score": 3
+            }
+          }
+        },
+        "15_socioeconomic": {
+          "label": "15. Socioeconomic Factors",
+          "sub_indicators": {
+            "15_1_indigenous_lands": {
+              "label": "15.1 Indigenous Peoples (IPs); Local Communities (LCs) Lands and Territories",
+              "example_score": -333,
+              "note": "不适用于建筑业"
+            },
+            "15_2_resource_scarcity": {
+              "label": "15.2 Resource scarcity",
+              "example_score": 2
+            },
+            "15_3_labor_human_rights": {
+              "label": "15.3 Labor/Human Rights",
+              "example_score": 3
+            },
+            "15_4_financial_inequality": {
+              "label": "15.4 Financial Inequality",
+              "example_score": 3
+            }
+          }
+        }
+      },
+      "total_indicators": 13,
+      "interpretation": "Reputational Risk 反映该地区的生物多样性外部压力程度。高分（4-5）表示该地区生物多样性压力大，企业在该地区的运营可能面临NGO、媒体或社区的负面关注。"
+    }
+  },
+
+  "total_indicators": 62,
+
+  "practical_use_for_skill": {
+    "input_required_from_user": [
+      "Site Name（资产名称）",
+      "Industry/Sector（行业，ISIC编码）",
+      "Latitude & Longitude（经纬度）",
+      "Optional: Sensitivity Scores（1-5，内部自评）"
+    ],
+    "output_structure": "hierarchical JSON with 62 indicators across 3 risk categories",
+    "integration_with_leap": {
+      "L": "BRF takes lat/lng to scope the spatial context",
+      "E": "BRF uses industry (ISIC) to filter applicable indicators and weights",
+      "A": "BRF scores across 62 indicators form the basis of financial risk quantification",
+      "P": "BRF output feeds into TNFD materiality assessment"
+    },
+    "sensitivity_layer": "BRF scores can be modified by Sensitivity (1-5) layer: Final Risk = BRF Score × Sensitivity Multiplier"
+  },
+
+  "columns_in_report": [
+    "Indicator ID & Name",
+    "Risk Score (1-5, -333, -999)",
+    "Category (Physical / Regulatory Deficiency / Reputational)"
+  ],
+
+  "note_from_user_sample": "这份报告来自'Test' - 'Construction Materials'行业的单点位分析示例。报告显示该行业在'3.3 Diseases'（疾病风险，得分5）和'9.4 Offset Requirements'（碳抵消要求，得分4）、'9.5 Protected Areas'（保护区，得分4）上风险最高。"
+}

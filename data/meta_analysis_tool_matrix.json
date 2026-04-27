@@ -1,0 +1,536 @@
+{
+  "title": "TNFD 自然数据工具荟萃矩阵",
+  "version": "1.0.0",
+  "updated": "2026-04-21",
+  "description": "基于 TNFD v1.0 LEAP 框架 × 资产类型 × 数据成熟度的四维工具选择矩阵。数据来源：TNFD官网、ENCORE官方文档、WRI Aqueduct官方文档、WWF BRF官方文档、实地Web验证（2026-04）。",
+  "methodology_note": "本矩阵的核心假设：直接运营资产（工厂/矿山）优先于上游供应链。原因：前者有精确经纬度，数据可闭环；后者供应链分散，5km格网精度不足，eDNA验证成本极高，非MVP阶段可规模化交付。",
+
+  "four_dimensions": {
+    "dimension_1": "LEAP阶段（定位→评价→评估→准备）",
+    "dimension_2": "资产类型（直接运营 vs 上游供应链）",
+    "dimension_3": "数据成熟度（L1定性→L4精确量化）",
+    "dimension_4": "工具类型（免费开源/ Freemium / 商业订阅）"
+  },
+
+  "tool_catalog": {
+    "free_public_goods": {
+      "label": "免费公共品",
+      "description": "WRI等机构提供的免费开源工具，算法透明，全球覆盖，适合NGO和中小企业。",
+      "tools": [
+        {
+          "id": "aqueduct",
+          "name": "WRI Aqueduct",
+          "full_name": "Aqueduct Water Risk Atlas",
+          "provider": "World Resources Institute",
+          "url": "https://www.wri.org/aqueduct",
+          "tnfd_phase": ["L", "A"],
+          "asset_type": ["direct_operations", "supply_chain_upstream"],
+          "data_type": "spatial_raster",
+          "resolution": "5km grid (global), finer for some regions",
+          "time_horizon": "Baseline to 2050 (RCP 8.5 scenarios)",
+          "metrics": [
+            "Water quantity stress (baseline water withdrawal vs. availability)",
+            "Drought risk",
+            "River flood risk",
+            "Coastal flood risk",
+            "Groundwater stress",
+            "Sea level rise risk"
+          ],
+          "advantages": [
+            "全球覆盖，算法完全透明",
+            "支持气候情景分析（RCP 4.5/8.5）",
+            "可预测至2050年的前瞻性风险",
+            "提供交互式地图和API接口"
+          ],
+          "limitations": [
+            "水质(Water Quality)评估颗粒度弱于水量(Water Quantity)",
+            "5km格网精度对分散供应链（如小农户）不够用",
+            "不提供生物多样性物种数据"
+          ],
+          "meta_analysis": "学术界视为宏观水资源压力评估的黄金标准。在TNFD中主要服务L阶段（定位物理风险）和A阶段（财务量化）的水风险部分。",
+          "free": true
+        },
+        {
+          "id": "gfw",
+          "name": "Global Forest Watch",
+          "full_name": "Global Forest Watch",
+          "provider": "World Resources Institute / Global Forest Watch",
+          "url": "https://www.globalforestwatch.org",
+          "tnfd_phase": ["L", "E"],
+          "asset_type": ["direct_operations", "supply_chain_upstream"],
+          "data_type": "satellite_remote_sensing",
+          "resolution": "10m (Sentinel-2), 30m (Landsat)",
+          "time_horizon": "Real-time to near-real-time (daily updates)",
+          "metrics": [
+            "Tree cover loss (gross)",
+            "Tree cover gain",
+            "Forest disturbance alerts (GLAD)",
+            "Carbon emissions (above-ground biomass)",
+            "Intact forest landscape"
+          ],
+          "advantages": [
+            "极高动态实时性（每日更新）",
+            "免费开源，适合供应链溯源",
+            "已有农业/木材供应链 deforestation 追踪案例"
+          ],
+          "limitations": [
+            "只能识别树木覆盖率消失，无法区分：自然火灾 vs 商业采伐 vs 人工林轮伐",
+            "需要本地数据校验才能做归因判断",
+            "不覆盖非林地生态系统（草地、湿地、海洋）"
+          ],
+          "meta_analysis": "基于卫星遥感，适合追踪供应链上游的毁林风险。但作为E阶段的工具使用时，只能提供「是否有林地破坏」的存在性判断，不能直接输出「企业影响了多少生物多样性」的程度判断。",
+          "free": true
+        },
+        {
+          "id": "encore",
+          "name": "ENCORE",
+          "full_name": "Exploring Natural Capital Opportunities, Risks and Exposure",
+          "provider": "UNEP-WCMC + Global Canopy",
+          "url": "https://encorenature.org",
+          "tnfd_phase": ["E", "A"],
+          "asset_type": ["direct_operations", "supply_chain_upstream"],
+          "data_type": "industry_matrix",
+          "resolution": "ISIC industry code level (e.g., C_10_101_1010)",
+          "time_horizon": "Static (no temporal projection)",
+          "metrics": [
+            "Ecosystem services dependencies (groundwater, pollination, climate regulation, etc.)",
+            "Biological impact drivers (water pollution, land use change, solid waste, etc.)",
+            "Materiality ratings: Very High / High / Medium / Low / Very Low"
+          ],
+          "modules": {
+            "economic_activities": "15个经济部门，73个子行业（按ISIC编码）",
+            "ecosystem_services": "生态系统服务分类（供给服务、调节服务、文化服务、支持服务）",
+            "impact_drivers": "生物物理压力驱动因素（5大类：土地/水/生物/土壤/空气）",
+            "spatial_data": "基于生物群系和国家的空间覆盖",
+            "mechanisms_of_change": "自然资本退化的驱动机制"
+          },
+          "advantages": [
+            "几乎所有TNFD研究都建议第一步使用ENCORE",
+            "清晰映射经济子行业与生态系统服务的依赖关系",
+            "提供 materiality ratings（重要性评级），可做优先级排序",
+            "完全免费，数据可下载"
+          ],
+          "limitations": [
+            "不提供空间位置信息（不回答「在哪里」的问题）",
+            "没有时间维度（静态数据）",
+            "需要配合空间工具（WDPA/IBAT）回答L阶段问题",
+            "不提供财务量化方法"
+          ],
+          "meta_analysis": "ENCORE回答的是「什么行业天然依赖什么自然资本」，不回答「特定位置有什么风险」。是E阶段的行业定性工具，不是L阶段的定位工具。在TNFD工具拼图中，是行业层级的定性问题解答器，而非空间风险定位器。",
+          "free": true
+        },
+        {
+          "id": "wdpa",
+          "name": "WDPA",
+          "full_name": "World Database on Protected Areas",
+          "provider": "UNEP-WCMC + IUCN",
+          "url": "https://www.protectedplanet.net",
+          "tnfd_phase": ["L"],
+          "asset_type": ["direct_operations"],
+          "data_type": "vector_polygon",
+          "resolution": "Point and polygon data (global)",
+          "time_horizon": "Monthly updates",
+          "metrics": [
+            "Protected area boundaries (polygons)",
+            "IUCN Category (Ia-VI)",
+            "PA status: Designated, Inscribed, Established, Not Reported"
+          ],
+          "advantages": [
+            "全球最权威的保护区边界数据库",
+            "实时更新（每月）",
+            "提供WKT/GeoJSON格式下载"
+          ],
+          "limitations": [
+            "只覆盖保护区，不回答「保护区外是否有生态敏感区域」",
+            "不提供物种数据（需要IBAT补充）",
+            "保护区边界可能有精度问题"
+          ],
+          "meta_analysis": "L阶段定位的核心免费工具。直接运营资产（有精确经纬度）用它做保护区重叠分析是标准做法。供应链端因为缺乏精确坐标，实际使用价值有限。",
+          "free": true
+        },
+        {
+          "id": "gbif",
+          "name": "GBIF",
+          "full_name": "Global Biodiversity Information Facility",
+          "provider": "GBIF Secretariat (government-funded)",
+          "url": "https://www.gbif.org",
+          "tnfd_phase": ["E", "A"],
+          "asset_type": ["direct_operations"],
+          "data_type": "species_occurrence_points",
+          "resolution": "Point-level (crowd-sourced + institutional data)",
+          "time_horizon": "Historical + current (some records from 1700s)",
+          "metrics": [
+            "Species occurrence (presence/absence)",
+            "Species richness",
+            "Occurrence density",
+            "Red List index integration"
+          ],
+          "advantages": [
+            "全球最大的物种出现记录开放数据库",
+            "提供API批量查询",
+            "覆盖物种面积极广（植物、动物、真菌）"
+          ],
+          "limitations": [
+            "数据采集不均匀（欧洲/北美数据密集，热带/偏远地区稀疏）",
+            "存在采样偏差（某些物种被过度记录）",
+            "不能直接给出「该地点生物多样性状态」的评估结论，需要专业解释"
+          ],
+          "meta_analysis": "学术界用于深度量化验证的工具，不是TNFD初阶筛查工具。企业实践中通常作为E阶段的「深层验证」——在识别出高风险位置后，用GBIF做物种丰富度的二次确认，成本高但说服力强。",
+          "free": true
+        }
+      ]
+    },
+
+    "freemium": {
+      "label": "部分免费（基础功能免费，高级功能付费）",
+      "description": "底层整合开源学术数据，但提供企业级商业接口。适合有一定预算的中型企业的商业TNFD评估。",
+      "tools": [
+        {
+          "id": "brf",
+          "name": "WWF Biodiversity Risk Filter",
+          "full_name": "WWF Biodiversity Risk Filter",
+          "provider": "WWF × ENCORE × SBTN",
+          "url": "https://riskfilter.org/biodiversity",
+          "tnfd_phase": ["L", "E", "A"],
+          "asset_type": ["direct_operations", "supply_chain_upstream"],
+          "data_type": "industry_matrix + spatial_raster + indicator_based",
+          "architecture": {
+            "foundation_layer": "ENCORE - 原始依赖/影响路径底座",
+            "application_layer": "WWF BRF - 行业权重调整 + 70生物多样性指标Exposure量化",
+            "human_layer": "Sensitivity - 人工判定（1-5分，利益相关方协商）"
+          },
+          "modules": {
+            "inform": "行业依赖/影响权重查询（免费，无需注册）",
+            "explore": "70个生物多样性指标地图（免费，无需注册）",
+            "assess": "注册用户上传资产坐标获取个性化评估（需注册）"
+          },
+          "risk_types": ["Physical", "Regulatory Deficiency", "Reputational"],
+          "indicators_70": {
+            "categories": [
+              "Ecosystem diversity (植被多样性、森林覆盖率、湿地面积等)",
+              "Species diversity (哺乳动物、鸟类、鱼类丰富度)",
+              "Ecosystem services (水源涵养、土壤保持、碳汇)"
+            ],
+            "exposure_quantification": "基于70指标加权计算location-specific Exposure评分（0-1）"
+          },
+          "sensitivity_scoring": {
+            "scale": "1-5",
+            "dimensions": ["社区依赖度", "监管压力", "媒体关注", "供应链集中度"],
+            "method": "内部自评(40%) + 利益相关方访谈(60%)",
+            "note": "唯一必须人工判定的维度，AI/数据库无法替代"
+          },
+          "risk_formula": "Risk Level = BRF_Weighted_Score × Exposure × Sensitivity",
+          "limitations": [
+            "BRF EXPLORE的70指标仍依赖5km+网格精度",
+            "Sensitivity评分主观性强，需要专业引导",
+            "供应链间接影响需单独评估（BRF仅覆盖直接运营）"
+          ],
+          "meta_analysis": "WWF BRF是ENCORE的下游应用——它的权重数据来自ENCORE，叠加了WWF的行业专家调整和70个生物多样性指标。在TNFD工具拼图中，BRF是「空间数据→企业内部管理语言」的翻译层，是将LEAP各阶段串联起来的应用框架。",
+          "free": true,
+          "free_note": "INFORM和EXPLORE模块免费；ASSESS模块需注册账号；企业定制支持需联系WWF"
+        },
+        {
+          "id": "encore_ai",
+          "name": "ENCORE AI",
+          "full_name": "ENCORE AI (Premium Tier)",
+          "provider": "UNEP-WCMC + Global Canopy",
+          "url": "https://encorenature.org",
+          "tnfd_phase": ["E", "A"],
+          "asset_type": ["direct_operations", "supply_chain_upstream"],
+          "data_type": "industry_matrix + spatial",
+          "tier": "Freemium",
+          "description": "在免费ENCORE基础上增加AI增强功能，包括空间可视化、自然资本货币化估算",
+          "advantages_premium": [
+            "AI驱动的自然资本货币化（财务影响估算）",
+            "交互式地图叠加",
+            "供应链热力图",
+            "定制化报告生成"
+          ],
+          "free": false,
+          "pricing_note": "ENCORE基础功能免费；ENCORE AI高级功能需订阅（企业定价）"
+        }
+      ]
+    },
+
+    "commercial": {
+      "label": "商业授权（企业订阅制）",
+      "description": "整合最权威的学术数据源，提供企业级接口和鉴证支持。适合大型企业和上市公司满足监管披露要求。",
+      "tools": [
+        {
+          "id": "ibat",
+          "name": "IBAT",
+          "full_name": "Integrated Biodiversity Assessment Tool",
+          "provider": "BirdLife International + Conservation International + IUCN + UNEP-WCMC",
+          "url": "https://www.ibat-alliance.org",
+          "tnfd_phase": ["L", "E"],
+          "asset_type": ["direct_operations"],
+          "data_type": "vector_spatial + species_data",
+          "tier": "Commercial (with research exemption)",
+          "datasets": {
+            "wdpa": "世界保护区数据库（303,313个保护地）",
+            "iucn_red_list": "受威胁物种红色名录（166,045个受威胁物种）",
+            "kba": "关键生物多样性区域（16,495个KBA）"
+          },
+          "star_indicator": {
+            "name": "STAR",
+            "full_name": "Species Threat Abatement and Restoration Indicator",
+            "description": "IBAT独有指标，量化特定地点的行动对全球生物多样性保护的潜在贡献",
+            "formula": "STAR = Σ (species_threat_level × geographic_scope ×feasibility_of_action)",
+            "use_case": "帮助企业优先排序在何处采取行动能最大化生物多样性收益"
+          },
+          "advantages": [
+            "整合四大权威机构数据（IUCN/CI/BirdLife/UNEP-WCMC）",
+            "STAR指标提供生物多样性行动优先级排序",
+            "企业用户包括GSK、LVMH、Nestlé、Anglo American、IKEA等"
+          ],
+          "limitations": [
+            "提供的是「存在性风险」（该区域有哪些敏感物种），不是「实时状态」（当前污染/退化程度）",
+            "商业使用需订阅（研究用途有免费额度）",
+            "供应链端因缺乏精确坐标，使用价值有限"
+          ],
+          "pricing": "商业订阅（企业）| 研究/学术用途免费（需申请）",
+          "meta_analysis": "IBAT是L阶段「静态生态基线」最权威的工具——回答「该位置是否存在生物多样性敏感物种」。但它是存在性判断工具，不是实时监测工具。最佳实践是：用IBAT做初筛（有没有风险），用WRI/GFW做动态监测（有变化吗），用GBIF做深度物种分析（具体是什么物种）。三者不替代，而是互补。",
+          "free": false
+        },
+        {
+          "id": "trucer",
+          "name": "TruCarbon",
+          "full_name": "TruCarbon (by Truegreen)",
+          "provider": "Truegreen / Verra affiliate",
+          "url": "https://www.truegreen.com",
+          "tnfd_phase": ["L", "E", "A"],
+          "asset_type": ["direct_operations", "supply_chain_upstream"],
+          "description": "自然碳汇信用额的标准化认证平台，整合实地监测与卫星遥感数据",
+          "tier": "Commercial",
+          "free": false
+        },
+        {
+          "id": "sedar",
+          "name": "SEDAR",
+          "full_name": "System for Environmental and Ecological Assessment",
+          "provider": "Various commercial providers",
+          "url": "N/A (commercial market)",
+          "tnfd_phase": ["L", "E", "A"],
+          "asset_type": ["direct_operations"],
+          "description": "商业环境咨询公司常用的综合评估系统，整合现场采样、实验室分析和GIS空间数据",
+          "tier": "Commercial",
+          "note": "非单一产品，而是商业咨询市场的系统总称。不同咨询公司有不同的SEDAR实现。",
+          "free": false
+        }
+      ]
+    }
+  },
+
+  "leap_tool_matrix": {
+    "description": "四维工具选择矩阵：LEAP阶段 × 资产类型 × 数据成熟度 × 推荐工具组合",
+    "phases": {
+      "L": {
+        "name": "Locate（定位）",
+        "question": "你的资产在哪里？这些地方生态敏感吗？",
+        "direct_operations": {
+          "L1_basic": {
+            "description": "有精确经纬度，需要快速筛查是否在保护区",
+            "tools": ["WDPA（免费）", "WRI Aqueduct（免费）"],
+            "output": "资产-保护区重叠清单"
+          },
+          "L2_intermediate": {
+            "description": "需要物种级敏感信息",
+            "tools": ["IBAT（商业/学术免费）"],
+            "output": "物种威胁报告 + KBA重叠分析"
+          },
+          "L3_advanced": {
+            "description": "需要实时动态变化监测",
+            "tools": ["Global Forest Watch（免费）", "BRF EXPLORE（免费）"],
+            "output": "年度/季度森林覆盖变化警报"
+          },
+          "L4_precise": {
+            "description": "需要现场采样验证（如eDNA检测）",
+            "tools": ["GBIF历史数据（免费）", "商业现场评估（商业）"],
+            "output": "物种多样性指数 + 生态系统健康评分"
+          }
+        },
+        "supply_chain_upstream": {
+          "L1_basic": {
+            "description": "供应商地理信息精度有限，只能做区域筛查",
+            "tools": ["WRI Aqueduct（区域水风险，免费）"],
+            "output": "采购区域的水风险热力图",
+            "limitation": "5km格网精度是硬约束，无法精确到单个供应商地址"
+          },
+          "L2_intermediate": {
+            "description": "已知采购区域，需要评估生物多样性风险",
+            "tools": ["BRF INFORM（行业权重，免费）", "ENCORE行业映射（免费）"],
+            "output": "采购品类的自然资本依赖风险评级"
+          },
+          "L3_advanced": {
+            "description": "高价值/高风险品类，需要供应链实地尽调",
+            "tools": ["商业供应链追溯平台（如Proforest, AidEnvironment）"],
+            "output": "供应链 deforestation 热力图 + 现场评估报告",
+            "limitation": "成本极高，适合大宗商品（棕榈油、大豆、牛肉、纸浆）"
+          }
+        }
+      },
+      "E": {
+        "name": "Evaluate（评价）",
+        "question": "你的业务依赖哪些自然资本？影响是什么？",
+        "vertical_stack": {
+          "description": "E阶段采用垂直集成架构：ENCORE(底座) → BRF(应用层) → Sensitivity(人工层)",
+          "foundation": {
+            "tool": "ENCORE",
+            "role": "依赖/影响路径底座，上游数据源",
+            "free": true,
+            "output": "ISIC行业-生态系统服务依赖矩阵 +  materiality ratings"
+          },
+          "application_layer": {
+            "tool": "WWF BRF",
+            "role": "行业权重调整（来自ENCORE原始评分）+ 70指标Exposure量化 + 风险分类",
+            "free": true,
+            "output": "BRF行业依赖/影响权重 + Exposure评分 + Physical/Regulatory/Reputational三类风险"
+          },
+          "human_layer": {
+            "tool": "Sensitivity",
+            "role": "唯一必须人工判定的维度，AI无法替代",
+            "free": true,
+            "output": "Sensitivity评分（1-5）= 内部自评(40%) + 利益相关方访谈(60%)"
+          },
+          "final_output": "Risk Level = BRF_Weighted × Exposure × Sensitivity"
+        }
+      },
+      "A": {
+        "name": "Assess（评估）",
+        "question": "这些依赖/影响，能转成财务数字吗？",
+        "direct_operations": {
+          "L1_basic": {
+            "description": "定性风险热力图",
+            "tools": ["WRI Aqueduct（水风险，免费）", "BRF（风险评级，免费）"],
+            "output": "风险热力图 + 影响面积"
+          },
+          "L2_intermediate": {
+            "description": "ENCORE依赖度系数 × 行业平均收入估算",
+            "tools": ["BRF权重（免费）", "行业财务基准数据（客户自供）"],
+            "output": "自然风险财务敞口估算（相对值）"
+          },
+          "L3_advanced": {
+            "description": "替代成本法",
+            "tools": ["WRI Aqueduct替代成本模块", "BRF Exposure评分", "NGFS自然风险框架（免费）"],
+            "output": "水风险财务估值（找替代水源的成本 = 水风险财务影响）"
+          },
+          "L4_precise": {
+            "description": "需要客户ERP数据（实际用水量、排污量、废弃物量）",
+            "tools": ["客户内部ERP数据", "商业LCA工具（如SimaPro, openLCA）"],
+            "output": "精确自然资本货币化（需要客户数据，不能由工具独立输出）",
+            "limitation": "Skill能提供方法论，不能替代客户内部数据"
+          }
+        }
+      },
+      "P": {
+        "name": "Prepare（准备）",
+        "question": "如何披露？符合TNFD 14项建议吗？",
+        "all_asset_types": {
+          "L1_basic": {
+            "description": "生成TNFD报告初稿",
+            "tools": ["TNFD v1.0官方披露模板（免费）", "Qwen/LLM生成报告草稿"],
+            "output": "TNFD格式报告初稿（需人工审核）"
+          },
+          "L2_intermediate": {
+            "description": "符合TNFD v1.0四支柱框架",
+            "tools": ["TNFD 14项建议清单（免费）", "SBTN初始指南（免费）", "ISSB S1/S2（免费）"],
+            "output": "符合TNFD v1.0要求的结构化披露"
+          },
+          "L3_advanced": {
+            "description": "需要第三方鉴证",
+            "tools": ["商业鉴证机构（如DNV-GL, Bureau Veritas）"],
+            "output": "带有限保证/合理保证的鉴证报告",
+            "note": "TNFD本身不要求强制第三方鉴证，但上市公司/监管要求场景下需要"
+          }
+        }
+      }
+    }
+  },
+
+  "puzzle_effect": {
+    "title": "拼图效应：无单一工具可独立跑通TNFD全流程",
+    "description": "基于学术文献综合分析和实地工具验证，TNFD的工具生态呈现高度碎片化特征。没有任何单一工具能同时回答「在哪里」（空间定位）、「是什么行业」（行业定性）和「有多严重」（财务量化）三个问题。",
+    "core_puzzle": {
+      "spatial_question": "在哪里？（Locate）",
+      "industry_question": "依赖什么？（Evaluate）",
+      "financial_question": "值多少钱？（Assess）"
+    },
+    "standard_practice": {
+      "step1_industry_qualitative": "用 ENCORE 确定行业固有的依赖性和影响（定性，行业层）",
+      "step2_spatial_screening": "用 WRI Aqueduct + IBAT 识别高风险的运营/供应链节点（空间筛查）",
+      "step3_financial_quantification": "结合 GBIF 原始物种观测数据或实地 eDNA 采样进行深度量化验证",
+      "step4_application": "用 WWF BRF 将空间数据转化为企业内部管理语言，串联LEAP各阶段"
+    },
+    "contradiction": {
+      "title": "空间分辨率与供应链溯源的内在矛盾",
+      "description": "现有工具（除IBAT/WDPA外）大多依赖5km-10km的网格精度。对于评估企业直接运营资产（工厂、矿山）绰绰有余，但在评估极其分散的上游供应链（如从小农户采购农产品）时，由于企业往往缺乏精准的经纬度数据，导致这些强大的空间工具难以发挥作用。",
+      "root_cause": "数据可得性：供应链上游的地理信息精度与空间工具的分辨率不匹配",
+      "academic_direction": "GBIF + eDNA 是理论上正确的解法方向，但成本极高，不是中小企业能用得起的"
+    }
+  },
+
+  "ndpf_vision": {
+    "title": "TNFD Nature Data Public Facility (NDPF) — 未来方向",
+    "description": "TNFD官方和学术界均意识到目前数据工具过于碎片化，正在推动建立NDPF（自然数据公共设施），旨在将开源工具的标准、接口进行统一，以降低企业的披露门槛。",
+    "goal": "统一碎片化的自然数据工具生态，降低TNFD披露的工程成本",
+    "status": "TNFD官方正在推进中，企业层面的实际影响待观察",
+    "implication_for_skill": "本矩阵中的工具选择逻辑应随NDPF的发展而动态更新"
+  },
+
+  "non_standard_handling": {
+    "title": "非标咨询的标准化解法：框架层固定，参数层可配置",
+    "description": "TNFD咨询项目非标的核心在于两个维度：(1)行业参数不同（农业 vs 矿业，依赖的自然资本完全不同）；(2)客户成熟度不同（有/无专职ESG团队、有/无基础数据）",
+    "framework_approach": {
+      "fixed_layer": "LEAP四阶段框架 + 工具选择矩阵（框架层不变）",
+      "configurable_layer": {
+        "industry_params": "使用 ENCORE materiality ratings 做行业定制化映射",
+        "maturity_params": "使用 L1-L4 量化成熟度分级适配客户实际能力",
+        "sensitivity_params": "使用 Sensitivity 1-5 分利益相关方协商量表适配企业语境"
+      },
+      "output": "框架层固定 → 参数层配置化 → 交付物规模化"
+    },
+    "practical_example": {
+      "scenario_1": {
+        "client": "中型制造业（自有工厂，精确经纬度）",
+        "maturity": "L2（有基本ESG数据，无ERP集成）",
+        "leap_path": "L:WDPA+Aqueduct → E:BRF+ENCORE → A:替代成本法(L3) → P:TNFD模板",
+        "tool_cost": "免费工具为主（WDPA/Aqueduct/BRF/ENCORE）",
+        "effort": "约2-4周内部工时"
+      },
+      "scenario_2": {
+        "client": "大型矿业（多矿区，上市披露要求）",
+        "maturity": "L4（有ERP系统，有专职ESG团队）",
+        "leap_path": "L:IBAT商业版+商业现场评估 → E:BRF+ENCORE → A:精确LCA(L4) → P:鉴证报告",
+        "tool_cost": "商业工具（IBAT+商业LCA+鉴证机构）",
+        "effort": "3-6个月咨询项目"
+      },
+      "scenario_3": {
+        "client": "食品/农业企业（分散供应链，小农户采购）",
+        "maturity": "L1-L2（供应链地理信息精度低）",
+        "leap_path": "L:BRF行业权重（无精确坐标） → E:ENCORE → A:BRF行业估算 → P:TNFD模板",
+        "tool_cost": "免费工具为主",
+        "limitation": "供应链端L阶段精度受限，需在报告中声明数据局限性",
+        "note": "这是MVP阶段的核心限制，需随供应链数据积累逐步升级"
+      }
+    }
+  },
+
+  "sources": [
+    {"tool": "TNFD LEAP Guide v1.1", "url": "https://tnfd.global/publication/additional-guidance-on-assessment-of-nature-related-issues-the-leap-approach/", "note": "April 2026 updated"},
+    {"tool": "ENCORE Materiality Ratings", "url": "https://encorenature.org/en/data-and-methodology/materiality", "note": "Very High/High/Medium/Low/Very Low ratings per industry"},
+    {"tool": "WWF Biodiversity Risk Filter", "url": "https://riskfilter.org/biodiversity", "note": "Verified 2026-04"},
+    {"tool": "WRI Aqueduct", "url": "https://www.wri.org/aqueduct", "note": "Global water risk atlas"},
+    {"tool": "Global Forest Watch", "url": "https://www.globalforestwatch.org", "note": "Real-time deforestation monitoring"},
+    {"tool": "IBAT", "url": "https://www.ibat-alliance.org", "note": "Commercial subscription with research exemption"},
+    {"tool": "GBIF", "url": "https://www.gbif.org", "note": "Species occurrence open data"},
+    {"tool": "TNFD Adopters", "url": "https://tnfd.global/engage/tnfd-adopters/", "note": "1000+ organizations as of 2026"}
+  ],
+
+  "meta_analysis_summary": {
+    "key_finding_1": "拼图效应是TNFD工具生态的本质特征，无一劳永逸的单一工具",
+    "key_finding_2": "ENCORE回答行业定性，WRI/IBAT回答空间定位，GBIF/eDNA回答深度验证——三层缺一不可",
+    "key_finding_3": "5km-10km格网精度是空间工具的共同瓶颈，供应链端应用受限是工程上的根本约束",
+    "key_finding_4": "WWF BRF是现有工具中最接近「一站式」的框架，但仍是「翻译层」而非「数据层」",
+    "key_finding_5": "TNFD官方推动NDPF（自然数据公共设施）是正确的方向，但企业层面的落地仍需时间"
+  }
+}

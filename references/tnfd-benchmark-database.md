@@ -21,7 +21,7 @@
 
 ---
 
-## TNFD 官方报告库（416+ 家采纳者）
+## TNFD 官方报告库（采纳者）
 
 **官方链接**：https://tnfd.global/knowledge-hub/example-tnfd-reporting/
 
@@ -183,7 +183,7 @@
   - **Indicator**（指示者）：已公开披露
 
 **截至 2025 年 12 月**：
-- 全球采纳者：416+ 家
+- 全球采纳者：官方 TNFD 报告库
 - 行业分布：金融（35%）、消费品（20%）、工业（15%）、其他（30%）
 - 地区分布：欧洲（40%）、亚太（30%）、北美（20%）、其他（10%）
 
@@ -241,7 +241,7 @@
 
 ## 参考文档
 
-- [**TNFD 官方报告库**](https://tnfd.global/knowledge-hub/example-tnfd-reporting/) — 416+ 家采纳者报告
+- [**TNFD 官方报告库**](https://tnfd.global/knowledge-hub/example-tnfd-reporting/) — 采纳者报告库
 - [TNFD Adopters 官方名单](https://tnfd.global/tnfd-adopters/)
 - [隆基 TNFD 报告](https://www.longi.com/cn/news/tnfd-report/)
 - [牧原 ESG 报告](https://www.hkexnews.hk/listedco/listconews/sehk/2026/0329/2026032900378_c.pdf)

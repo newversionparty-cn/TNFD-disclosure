@@ -1,0 +1,155 @@
+{
+  "schema_version": "1.0",
+  "description": "Fact verification registry for case claims in TNFD-disclosure skill. All claims require source URL and report page number before being used as verified facts.",
+  "last_updated": "2026-04-27",
+  "claims": [
+    {
+      "id": "longi-tnfd-report-date",
+      "company": "LONGi Green Energy (隆基绿能)",
+      "claim_zh": "隆基绿能于 2025年11月 发布独立 TNFD 报告",
+      "claim_en": "LONGi published an independent TNFD report in November 2025",
+      "source_url": "",
+      "report_page": null,
+      "verified_date": "2026-04-27",
+      "verification_status": "pending",
+      "confidence": "low",
+      "notes": "No URL or page number provided in source documents. Claim appears in README and case study files."
+    },
+    {
+      "id": "longi-tnfd-report-coverage",
+      "company": "LONGi Green Energy",
+      "claim_zh": "隆基 TNFD 报告 14 项覆盖 10 项（71%）",
+      "claim_en": "LONGi TNFD report covers 10/14 items (71%)",
+      "source_url": "",
+      "report_page": null,
+      "verified_date": "2026-04-27",
+      "verification_status": "pending",
+      "confidence": "low",
+      "notes": "No source document cited. Should reference specific page in official TNFD report."
+    },
+    {
+      "id": "longi-natural-capital-savings",
+      "company": "LONGi Green Energy",
+      "claim_zh": "隆基嘉兴基地自然资本评估节省 2149.6 万元",
+      "claim_en": "LONGi Jiaxing base natural capital assessment saved ¥21.496M",
+      "source_url": "",
+      "report_page": null,
+      "verified_date": "2026-04-27",
+      "verification_status": "pending",
+      "confidence": "low",
+      "notes": "No source cited. Financial figure needs verification."
+    },
+    {
+      "id": "muyuan-tnfd-report-date",
+      "company": "Muyuan Foods (牧原股份)",
+      "claim_zh": "牧原股份于 2026年3月 发布 TNFD 相关披露（港交所）",
+      "claim_en": "Muyuan Foods published TNFD-related disclosure in March 2026 (HKEX)",
+      "source_url": "",
+      "report_page": null,
+      "verified_date": "2026-04-27",
+      "verification_status": "pending",
+      "confidence": "low",
+      "notes": "No URL or page number provided."
+    },
+    {
+      "id": "muyuan-tnfd-coverage",
+      "company": "Muyuan Foods",
+      "claim_zh": "牧原 TNFD 报告 14 项覆盖 10 项（71%），监测体系 49 项指标",
+      "claim_en": "Muyuan TNFD report covers 10/14 items (71%) with 49 monitoring indicators",
+      "source_url": "",
+      "report_page": null,
+      "verified_date": "2026-04-27",
+      "verification_status": "pending",
+      "confidence": "low",
+      "notes": "No source cited. Note: 49-indicator monitoring system described but not sourced."
+    },
+    {
+      "id": "tnfd-global-adopters-416",
+      "company": "TNFD",
+      "claim_zh": "全球已有 416+ 组织采纳 TNFD",
+      "claim_en": "416+ organizations have adopted TNFD globally (as of December 2025)",
+      "source_url": "https://tnfd.global/knowledge-hub/example-tnfd-reporting/",
+      "report_page": null,
+      "verified_date": "2026-04-27",
+      "verification_status": "pending",
+      "confidence": "medium",
+      "notes": "TNFD official hub exists but current local data file does not contain 416 structured records."
+    },
+    {
+      "id": "vestas-tnfd-report",
+      "company": "Vestas",
+      "claim_zh": "Vestas 于 2024年12月 发布独立 TNFD 报告",
+      "claim_en": "Vestas published an independent TNFD report in December 2024",
+      "source_url": "",
+      "report_page": null,
+      "verified_date": "2026-04-27",
+      "verification_status": "pending",
+      "confidence": "low",
+      "notes": "No source cited in benchmark database."
+    },
+    {
+      "id": "orsted-tnfd-report",
+      "company": "Ørsted",
+      "claim_zh": "Ørsted 发布 TNFD 报告",
+      "claim_en": "Ørsted published a TNFD report",
+      "source_url": "",
+      "report_page": null,
+      "verified_date": "2026-04-27",
+      "verification_status": "pending",
+      "confidence": "low",
+      "notes": "Claimed as benchmark case but no date or URL provided."
+    },
+    {
+      "id": "amea-power-tnfd-report",
+      "company": "AMEA Power",
+      "claim_zh": "AMEA Power 发布 TNFD 报告",
+      "claim_en": "AMEA Power published a TNFD report",
+      "source_url": "",
+      "report_page": null,
+      "verified_date": "2026-04-27",
+      "verification_status": "pending",
+      "confidence": "low",
+      "notes": "Claimed as benchmark case but no date or URL provided."
+    },
+    {
+      "id": "consulting-cost-range",
+      "company": "Industry Benchmark",
+      "claim_zh": "四大 TNFD 咨询项目收费 50-200 万元人民币",
+      "claim_en": "Big Four TNFD consulting projects cost RMB 500,000-2,000,000",
+      "source_url": "",
+      "report_page": null,
+      "verified_date": "2026-04-27",
+      "verification_status": "pending",
+      "confidence": "low",
+      "notes": "No source for this cost range. Appears in pain point section of README."
+    },
+    {
+      "id": "ey-ccass-double-materiality",
+      "company": "EY CCaSS",
+      "claim_zh": "安永 CCaSS 采用双重实质性方法论",
+      "claim_en": "EY CCaSS uses Double Materiality methodology",
+      "source_url": "",
+      "report_page": null,
+      "verified_date": "2026-04-27",
+      "verification_status": "pending",
+      "confidence": "low",
+      "notes": "Big 4 methodology references are marked pending verification in SKILL.md."
+    },
+    {
+      "id": "deloitte-natural-capital-protocol",
+      "company": "Deloitte",
+      "claim_zh": "德勤采用自然资本议定书方法论",
+      "claim_en": "Deloitte uses Natural Capital Protocol methodology",
+      "source_url": "",
+      "report_page": null,
+      "verified_date": "2026-04-27",
+      "verification_status": "pending",
+      "confidence": "low",
+      "notes": "Big 4 methodology references are marked pending verification in SKILL.md."
+    }
+  ],
+  "verification_instructions": {
+    "en": "For each claim with verification_status=pending: find the official source document, locate the specific page number, and update the record. Until verified, downgrade claim to '精选案例，待逐项核验' in user-facing documentation.",
+    "zh": "每个 verification_status=pending 的声明：找到官方源文件，定位具体页码，更新记录。在核验完成前，将用户文档中的声明降级为「精选案例，待逐项核验」。"
+  }
+}
