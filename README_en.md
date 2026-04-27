@@ -175,7 +175,7 @@ Input industry name → Match benchmark cases (LONGi / Muyuan / HSBC / Rio Tinto
 
 ### Phase 5: Assurance
 
-Coverage check across all 14 TNFD Disclosure Recommendations (Governance 2 + Strategy 2 + Risk & Impact Management 4 + Metrics & Targets 6)
+Coverage check across all 14 TNFD Disclosure Recommendations (Governance 3 + Strategy 4 + Risk & Impact Management 4 + Metrics & Targets 3)
 
 ---
 
@@ -293,7 +293,7 @@ MIT License — see [LICENSE](LICENSE)
 | Dimension | China | International |
 |-----------|-------|---------------|
 | **Regulatory Requirement** | Voluntary (Guidelines ≠ TNFD) | G20 push, ISSB referenced |
-| **Adopting Organizations** | Leading pioneers (LONGi, Muyuan) | 416+ organizations (as of Dec 2025) |
+| **Adopting Organizations** | Leading pioneers (LONGi, Muyuan) | Official TNFD hub + curated cases |
 | **Data Environment** | Ecological Red Lines non-public | WDPA/IBAT free/subscription |
 | **Methodology** | CASS-ESG 6.0 alignment | ENCORE + LEAP |
 | **Assurance Requirement** | No mandatory third-party assurance | TNFD provides assurance guidance |
@@ -302,4 +302,4 @@ MIT License — see [LICENSE](LICENSE)
 
 ---
 
-*Last updated: 2026-04-20*
+*Last updated: 2026-04-27 | Case dates/figures: verification pending*

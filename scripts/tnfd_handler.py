@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-TNFD PUA Handler — 处理 /tnfd 指令并输出 Sprint Banner + KPI
+TNFD Engagement Handler — 处理 /tnfd 指令并输出 Sprint Banner + KPI
 """
 
 import json
@@ -37,8 +37,28 @@ def init_tnfd():
         with open(STATE_FILE, 'w') as f:
             json.dump({"projects": {}, "last_updated": datetime.now().isoformat()}, f)
     if not COMMANDS_FILE.exists():
-        print("⚠️ COMMANDS_FILE not found. Run this script from the skill directory.", file=sys.stderr)
-        sys.exit(1)
+        # Generate default commands.json — required for handler to function
+        default_commands = {
+            "version": "1.0.0",
+            "generated_at": datetime.now().isoformat(),
+            "commands": {
+                "/tnfd": {"description": "启动 TNFD 助手", "phase": None},
+                "/tnfd new": {"description": "新建 TNFD 项目", "phase": None},
+                "/tnfd status": {"description": "查看项目状态", "phase": None},
+                "/tnfd kpi": {"description": "生成 KPI 报告", "phase": None},
+                "/tnfd benchmark": {"description": "Phase 0：对标分析", "phase": "phase0"},
+                "/tnfd locate": {"description": "Phase 1：定位", "phase": "locate"},
+                "/tnfd evaluate": {"description": "Phase 2：评价", "phase": "evaluate"},
+                "/tnfd assess": {"description": "Phase 3：评估", "phase": "assess"},
+                "/tnfd prepare": {"description": "Phase 4：准备披露", "phase": "prepare"},
+                "/tnfd audit": {"description": "Phase 5：审计检查", "phase": "assurance"},
+                "/tnfd report": {"description": "生成完整 TNFD 报告", "phase": None},
+                "/tnfd save": {"description": "保存项目状态", "phase": None},
+                "/tnfd reset": {"description": "重置项目", "phase": None}
+            }
+        }
+        with open(COMMANDS_FILE, 'w') as f:
+            json.dump(default_commands, f, indent=2, ensure_ascii=False)
 
 # ─────────────────────────────────────────────────────────────
 # 加载数据
@@ -66,16 +86,9 @@ def load_commands():
 
 def sprint_banner(command, phase_info=None):
     """输出 Sprint Banner"""
-    flavor_map = {
-        "alibaba": "🟠 阿里味",
-        "bytedance": "🟡 字节味",
-        "huawei": "🔴 华为味",
-    }
-    flavor = load_config().get("flavor", "alibaba")
-    flavor_str = flavor_map.get(flavor, "🟠 阿里味")
-    
     state = load_state()
-    current_project = load_config().get("current_project")
+    config = load_config()
+    current_project = config.get("current_project")
     
     project_info = "无活跃项目"
     leap_status = "—"
@@ -86,13 +99,9 @@ def sprint_banner(command, phase_info=None):
         leap = proj.get("leap_complete", [])
         leap_status = " → ".join(leap) if leap else "未开始"
     
-    banner = f"""
+    banner = f"""\
 ┌─────────┬────────────────────────────────────────────────────────┐
 │ 📋 任务 │ {command[:50]:<50} │
-├─────────┼────────────────────────────────────────────────────────┤
-│ 🔥 味道 │ {flavor_str:<50} │
-├─────────┼────────────────────────────────────────────────────────┤
-│ ⚡ 压力 │ L0 · 信任期                                        │
 ├─────────┼────────────────────────────────────────────────────────┤
 │ 📦 项目 │ {project_info:<50} │
 ├─────────┼────────────────────────────────────────────────────────┤
@@ -168,7 +177,7 @@ def kpi_card(tnfd_count=0, risks_found=0, data_quality="B", leap_complete=None):
     
     score_emoji = "🥇" if score >= 4.5 else "🥈" if score >= 3.5 else "🥉" if score >= 2.5 else "📉"
     
-    kpi = f"""
+    kpi = f"""\
 ┌─────────────────────────────────────────────────────────────┐
 │  📊 TNFD KPI 报告卡                                         │
 │                                                              │
@@ -179,7 +188,6 @@ def kpi_card(tnfd_count=0, risks_found=0, data_quality="B", leap_complete=None):
 │  · 数据质量：{quality_stars}                                │
 │                                                              │
 │  综合评级：{score_emoji} {score:.1f}                                               │
-│  「这才像个 P8 的样子。」                                      │
 └─────────────────────────────────────────────────────────────┘
 """
     print(kpi)
@@ -293,16 +301,26 @@ def create_project(name, industry):
 
 def main():
     init_tnfd()
-    
+
     if len(sys.argv) < 2:
         help_card()
         return
-    
-    command = sys.argv[1].lower()
-    
-    if command == "/tnfd" or command == "start":
+
+    # Normalize: strip leading/trailing whitespace, lowercase
+    raw = sys.argv[1].strip().lower()
+    # Handle "/tnfd" (bare) and "/tnfd status" (with subcommand)
+    if raw.startswith("/tnfd"):
+        parts = raw.split()
+        if len(parts) == 1:
+            command = "/tnfd"
+        else:
+            command = parts[1]  # e.g. "/tnfd status" -> "status"
+    else:
+        command = raw  # bare subcommand like "status"
+
+    if command == "/tnfd" or command == "start" or command == "/tnfd":
         sprint_banner("启动 TNFD 助手")
-        print("> 收到需求，对齐目标，进入 sprint。因为信任所以简单——别让信任你的人失望。")
+        print("> 收到 TNFD 助手激活指令。请选择下一步操作：")
         print("> 请告诉我你想做什么：")
         print("   /tnfd new — 新建项目")
         print("   /tnfd status — 查看状态")

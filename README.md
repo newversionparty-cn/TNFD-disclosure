@@ -2,7 +2,7 @@
 
 > 🌍 让自然相关财务信息披露与 TCFD 一样触手可及。
 > 基于 TNFD v1.0 官方框架 + 四大 ESG 咨询方法论 + 中国本土标准。
-> 内置 ENCORE 数据 + 416+ 采纳者报告库。
+> 内置 ENCORE 数据 + 提供 TNFD 官方报告库入口 + 精选行业案例索引。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TNFD Version](https://img.shields.io/badge/TNFD-v1.0-blue)](https://tnfd.global)
@@ -61,10 +61,10 @@ Phase 0: 对标分析     →     Phase 1: LEAP 评估     →     Phase 2: 审�
 
 | 支柱 | 建议数 | 核心检查点 |
 |------|--------|-----------|
-| **治理** Governance | 2 项 | 董事会监督 · 管理层职责 |
-| **战略** Strategy | 2 项 | 业务影响 · 机遇影响 |
-| **风险与影响管理** Risk & Impact | 4 项 | 识别流程 · 评估方法 · ERM 整合 · 影响管理 |
-| **指标与目标** Metrics & Targets | 6 项 | KPI · 目标 · 方法变更 · 财务量化 · 资本配置 · 自然定价 |
+| **治理** Governance | 3 项 | 董事会监督 · 管理层角色 · 人权与利益相关方 |
+| **战略** Strategy | 4 项 | 依赖与影响识别 · 业务模式影响 · 战略韧性 · 优先位置 |
+| **风险与影响管理** Risk & Impact | 4 项 | 直接运营识别评估 · 价值链识别评估 · 监控流程 · ERM 整合 |
+| **指标与目标** Metrics & Targets | 3 项 | 风险与机遇指标 · 依赖与影响指标 · 目标与绩效 |
 
 ---
 
@@ -84,7 +84,7 @@ Phase 0: 对标分析     →     Phase 1: LEAP 评估     →     Phase 2: 审�
 | 经济成本 | 50-200 万 RMB | 免费开源 |
 | 专业门槛 | 需要四大咨询 | AI 辅助引导 |
 | 数据获取 | 手动收集 | 内置 ENCORE |
-| 行业对标 | 付费购买 | 内置 416+ 案例 |
+| 行业对标 | 付费购买 | 精选案例索引 |
 | 审计准备 | 额外收费 | 内置检查 |
 
 ---

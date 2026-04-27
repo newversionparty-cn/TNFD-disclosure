@@ -137,7 +137,7 @@ echo "官方库：https://tnfd.global/knowledge-hub/example-tnfd-reporting/"
 
 ## 参考文档
 
-- [**TNFD 官方报告库**](https://tnfd.global/knowledge-hub/example-tnfd-reporting/) — 416+ 家采纳者报告
+- [**TNFD 官方报告库**](https://tnfd.global/knowledge-hub/example-tnfd-reporting/) — 采纳者报告库
 - [TNFD Adopters 官方名单](https://tnfd.global/tnfd-adopters/)
 - [隆基 TNFD 报告](https://www.longi.com/cn/news/tnfd-report/)
 - [牧原 ESG 报告](https://www.hkexnews.hk/listedco/listconews/sehk/2026/0329/2026032900378_c.pdf)

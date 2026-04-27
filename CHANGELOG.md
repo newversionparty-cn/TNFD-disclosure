@@ -51,7 +51,7 @@
 
 ---
 
-## [2.0.0] · 2026-04-19 · v2 重大更新：PUA 行为控制系统
+## [2.0.0] · 2026-04-19 · v2 重大更新：交付流程控制系统
 
 ### 新增
 
@@ -61,21 +61,20 @@
 - 状态持久化（~/.tnfd/project-state.json）
 - Sprint Banner + KPI 卡格式化输出
 
-**TNFD PUA Handler**
+**TNFD Engagement Handler**
 - scripts/tnfd_handler.py — 状态管理 + Banner 输出 + KPI 卡
 - ~/.tnfd/config.json — 用户配置
-- ~/.tnfd/commands.json — 指令定义
+- ~/.tnfd/commands.json — 指令定义（自动生成）
 - ~/.tnfd/project-state.json — 项目状态
 
-**PUA 行为控制**
+**交付节奏控制**
 - Sprint Banner：Unicode 方框进度条
 - KPI 卡：绩效报告卡
 - 主动触发：阶段完成/风险发现/数据质量问题提醒
-- 失败升级：L1-L4 压力升级
 
 ### 优化
 
-- SKILL.md 全面重构，整合 PUA 指令系统
+- SKILL.md 全面重构，整合 /tnfd 指令系统
 - README.md 新增 /tnfd 指令系统说明
 - 安装流程更新（新增 Handler 安装步骤）
 
@@ -87,7 +86,7 @@
 
 **核心功能**
 - Phase 0: Benchmark Analysis（对标分析）
-  - 416+ 家 TNFD 采纳者报告库
+  - 精选 TNFD 采纳者报告索引（verification_status: pending）
   - 行业标杆匹配（光伏/养殖/金融/矿业等）
   - 最佳实践提取和差距分析框架
   - 直接发送报告 PDF 链接功能
@@ -104,7 +103,7 @@
   - 模拟审计意见输出
 
 **数据文件**
-- `data/tnfd_report_links.json` — TNFD 报告链接 JSON（416+ 条）
+- `data/tnfd_report_links.json` — TNFD 报告链接 JSON（verification_status: pending）
 - `data/encore_processed/` — ENCORE 处理后数据
   - `ecosystem_services.json` — 48 个生态系统服务
   - `dependency_by_industry.json` — 21 个行业依赖矩阵
@@ -130,8 +129,7 @@
 - `references/longi-tnfd-case-study.md` — 隆基案例研究
 - `references/longi-muyuan-tnfd-comparison.md` — 隆基 vs 牧原对比
 - `references/china-esg-standards.md` — 中国 ESG 标准体系
-- `references/ey-gds-level-protocol.md` — EY 职级对标协议
-- `references/partner-warm-pua-protocol.md` — 合伙人温情式 PUA
+
 
 **脚本**
 - `scripts/process_encore_data.py` — ENCORE 数据处理脚本
