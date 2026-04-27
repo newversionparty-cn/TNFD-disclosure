@@ -1,4 +1,4 @@
-# TNFD-disclosure · 自然相关财务披露专业助手
+# TNFD-disclosure · 自然相关财务披露助手
 
 > 🌍 让自然相关财务信息披露与 TCFD 一样触手可及。
 > 基于 TNFD v1.0 官方框架 + 四大 ESG 咨询方法论 + 中国本土标准。
