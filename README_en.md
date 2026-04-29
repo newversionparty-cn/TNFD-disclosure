@@ -1,242 +1,52 @@
-# TNFD-disclosure
+# TNFD-disclosure · Nature-Related Financial Disclosure Workbench
 
-> 🌍 Making Nature-related Financial Disclosures as accessible as TCFD. | [中文版](./README.md)
+> A traceable, evidence-based, phase-gated TNFD disclosure workflow for ESG consultants, sustainability teams, and AI Agents.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![TNFD Version](https://img.shields.io/badge/TNFD-v1.0-blue)](https://tnfd.global)
-[![ENCORE Version](https://img.shields.io/badge/ENCORE-2025.09-green)](https://encorenature.org)
-[![Platform](https://img.shields.io/badge/Platform-Hermes%7CClaude%20Code%7COpenClaw-blueviolet)](https://github.com/newversionparty-cn/TNFD-disclosure)
-[![Status](https://img.shields.io/badge/Status-Active-brightgreen)]()
+[![TNFD v1.0](https://img.shields.io/badge/TNFD-v1.0-blue)](https://tnfd.global)
+[![ENCORE 2025.09](https://img.shields.io/badge/ENCORE-2025.09-green)](https://encorenature.org)
+[![Validate](https://img.shields.io/badge/Claim%20Validation-10%2F10-brightgreen)](#fact-governance)
+
+[**中文版**](README.md) · [**Quick Start**](#quick-start) · [**Workflow**](#workflow) · [**File Structure**](#file-structure) · [**Fact Governance**](#fact-governance)
 
 ---
 
-## What is this?
+## What This Solves
 
-**TNFD-disclosure is an AI Agent Skill (Prompt Library), not a Python CLI or Web App.**
-
-It is a structured prompt + knowledge base package designed for AI agents that support custom skills — specifically Hermes, Claude Code, and OpenClaw.
-
-| If you are... | How to use |
-|---------------|------------|
-| **ESG Consultant** | Use `SKILL.md` content as your AI Agent's System Prompt |
-| **Developer** | Reference modular Prompt templates in `prompts/` to integrate into your Agent |
-| **AI Agent User** | Install this package in a Skill-enabled Agent and type `/tnfd` to activate |
+| Problem | How This Skill Addresses It |
+|---|---|
+| Scattered TNFD documentation | Integrated LEAP components, 14 recommendations, General Requirements, Metrics architecture |
+| Unverifiable case figures | Claim Registry + `validate_claims.py` — pending claims cannot be stated as facts |
+| Internal models misrepresented as official | All custom formulas labeled `method_status: internal`; not for external disclosure |
+| Assurance language overreach | Outputs "assurance-readiness ratings", not audit opinions |
+| China regulation conflated with TNFD | Clear separation: CSRC rules are mandatory; TNFD is voluntary |
 
 ---
 
-## Architecture
+## Workflow
 
 ```
-TNFD-disclosure/
-├── SKILL.md              # Main Skill file (System Prompt + Knowledge Base)
-├── QUICK_REFERENCE.md    # Agent quick reference card
-├── prompts/              # Modular Prompt templates
-│   ├── 00-benchmark.md    # Phase 0: Benchmarking
-│   ├── 01-locate.md       # Phase 1: Locate
-│   ├── 02-evaluate.md    # Phase 2: Evaluate
-│   ├── 03-assess.md       # Phase 3: Assess
-│   ├── 04-prepare.md      # Phase 4: Prepare
-│   └── 05-assurance.md    # Phase 5: Assurance
-├── references/           # Reference knowledge base
-│   ├── tnfd-leap-complete-guide.md
-│   ├── big4-methodologies.md
-│   ├── china-esg-standards.md
-│   └── ...
-├── data/                 # Built-in data
-│   ├── encore_processed/ # ENCORE processed JSON (Sep 2025)
-│   └── tnfd_report_links.json
-└── scripts/
-    ├── tnfd_handler.py    # State manager (optional)
-    └── process_encore_data.py
+Scope → Benchmark → Locate → Evaluate → Assess → Prepare → Assurance Readiness
+  C1-C4    L1-L4      E1-E4    A1-A4    P1-P4
 ```
 
-### Workflow
+Each phase checks its evidence gate. When evidence is insufficient, the skill outputs a gap list instead of generating a "complete report".
 
-```
-Phase 0          Phase 1: LEAP                    Phase 2
-  │              ┌──┬───┬────┬────┐               │
-  ▼              │L │ E │  A │  P │               ▼
-Benchmarking ──► └──┴───┴────┴────┘ ─────────► Assurance
-  │              (Locate→Evaluate→Assess→Prepare)  │
-  ▼                                                ▼
-Case Studies ───────────────────────────────► Report Generation
-```
+### Commands
 
----
-
-## Quick Start
-
-### Step 1: Install the Skill
-
-**Hermes (Recommended)**
-```bash
-ln -s ~/Desktop/TNFD/skill ~/.Hermes/skills/tnfd-disclosure
-```
-
-**OpenClaw**
-```bash
-cp -r ~/Desktop/TNFD/skill ~/.openclaw/skills/tnfd-disclosure
-```
-
-**Claude Code**
-```bash
-mkdir -p ~/.claude/skills && cp -r ~/Desktop/TNFD/skill ~/.claude/skills/tnfd-disclosure
-```
-
-### Step 2: Activate the Skill
-
-In any Skill-enabled Agent conversation, type:
-```
-/tnfd
-```
-
-The Agent will display a Sprint Banner and enter the TNFD workflow.
-
-### Step 3: Start a Project
-
-```
-/tnfd new                           # New project
-/tnfd benchmark                     # Phase 0: Benchmarking
-/tnfd locate                       # Phase 1: Locate
-/tnfd evaluate                      # Phase 2: Evaluate
-/tnfd assess                        # Phase 3: Assess
-/tnfd prepare                       # Phase 4: Prepare
-/tnfd audit                         # Phase 5: Assurance
-/tnfd report                        # Generate report
-```
-
----
-
-## TNFD LEAP Framework
-
-TNFD v1.0 (published September 2023) is built on the **LEAP methodology**:
-
-| Phase | English | Core Question | Primary Data Sources |
-|-------|---------|---------------|----------------------|
-| **L** | Locate | Where are your assets? Are these locations ecologically sensitive? | WDPA, IBAT, WRI Aqueduct, Ecological Red Lines |
-| **E** | Evaluate | Which natural capital do your operations depend on? What impacts do you have? | **WWF BRF + ENCORE** (three-layer system) |
-| **A** | Assess | Can these dependencies and impacts be translated into financial figures? | NGFS Framework + Replacement Cost Method |
-| **P** | Prepare | How to disclose? Do you meet all 14 TNFD Recommendations? | TNFD v1.0 Disclosure Template |
-
-### Assess Phase — Quantification Maturity Levels
-
-| Level | What You Can Do | Skill Can Guide You |
-|-------|-----------------|---------------------|
-| L1 (Basic) | Qualitative risk identification | ✅ Yes |
-| L2 (Intermediate) | Semi-quantitative (area, volume) | ✅ Yes |
-| L3 (Advanced) | Financial equivalent quantification | ⚠️ Methods provided, not precise figures |
-| L4 (Exact) | Requires client ERP data | ❌ Skill cannot replace |
-
-> ⚠️ **Skill Boundary**: The Skill is a "GPS navigator", not a "driver". Precise financial quantification requires client internal data — no Agent can replace that.
-
----
-
-## Data Sources
-
-| Data Source | Use Case | LEAP Phase | Free? | Notes |
-|-------------|----------|------------|-------|-------|
-| **WWF BRF** | Industry dependency/impact weights (primary) + Exposure | E | ✅ Free | [官网](https://riskfilter.org/biodiversity) |
-| **ENCORE** | Dependency/Impact pathway (base layer) | E, A | Basic free | [官网](https://encorenature.org) |
-| **WDPA** | Protected Area Database | L | Free | UNEP-WCMC |
-| **IBAT** | Integrated Biodiversity | L, E | Research free | Commercial requires subscription |
-| **WRI Aqueduct** | Water Risk Atlas | L, A | Free | [官网](https://www.wri.org/aqueduct) |
-| **Ecological Red Lines** | China's Ecological Sensitive Zones | L | Non-public | Apply via Ministry of Natural Resources |
-| **Blue Map (IPE)** | Corporate Pollution Records | L, E | Partially free | [IPE](https://www.ipe.org.cn) |
-
----
-
-## China Context
-
-**TNFD Status in China**:
-- CSRC 2024 issued the "Listed Company Sustainability Report Guidelines" — **not identical to TNFD**
-- The 2026 A+H mandatory requirement applies to these Guidelines, not TNFD itself
-- TNFD remains in **voluntary adoption** phase in China
-- Pending local case leads include LONGi Green Energy and Muyuan Foods; dates and report details require claim-registry verification.
-
-**Local Standards Reference**:
-- CASS-ESG 6.0 (China-EU alignment version)
-- CSRC "Listed Company Sustainability Report Guidelines" (2024)
-- MEE "Enterprise Environmental Information Disclosure Management Measures"
-
----
-
-## Core Features
-
-### Phase 0: Benchmarking
-
-Input industry name → Match benchmark cases (LONGi / Muyuan / HSBC / Rio Tinto) → Output gap analysis framework
-
-### Phase 1–4: LEAP Assessment
-
-- **L – Locate**: Asset coordinates → ecological sensitivity overlay analysis
-- **E – Evaluate**: Industry classification → ENCORE dependency/impact matrix
-- **A – Assess**: Risk quantification + opportunity identification
-- **P – Prepare**: TNFD report preparation
-
-### Phase 5: Assurance
-
-Coverage check across all 14 TNFD Disclosure Recommendations (Governance 3 + Strategy 4 + Risk & Impact Management 4 + Metrics & Targets 3)
-
----
-
-## Benchmark Cases
-
-The following cases are pending, unverified leads unless `data/case_claims_verification.json` contains a source URL and report page number. Do not use dates, coverage rates, monetary figures, or assurance conclusions as verified facts before that check.
-
-### LONGi Green Energy (Solar PV, pending case lead)
-
-**Pending verification topics**:
-- Publication date and report type
-- Whether LEAP and EY CCaSS were used (pending)
-- Natural capital assessment claims
-- Targets and third-party cooperation
-
-| Metric | Data |
-|--------|------|
-| LEAP Completeness | pending verification |
-| 14-Item Coverage | pending verification |
-
-### Muyuan Foods (Aquaculture, pending case lead)
-
-**Pending verification topics**:
-- Publication date and report venue
-- Whether LEAP, Deloitte, or Natural Capital Protocol were used (pending)
-- Monitoring indicators and frequency
-
-**Monitoring System**:
-
-| Category | Indicators | Frequency |
-|----------|-----------|-----------|
-| Soil | 16 | 2x/year × 100% coverage |
-| Groundwater | 12 | 2x/year × 100% coverage |
-| Surface Water | 6 | 1–4x/year |
-| Agricultural Products | 15 | 1–2x/year |
-
----
-
-## Methodology Framework
-
-### Big Four TNFD Methodologies
-
-| Firm | Methodology | Core Keywords |
-|------|-------------|---------------|
-| **EY** | pending verification | pending verification |
-| **Deloitte** | pending verification | pending verification |
-| **PwC** | pending verification | pending verification |
-| **KPMG** | pending verification | pending verification |
-
-> ⚠️ Big Four methodology references are based on public sources. For details, refer to each firm's official TNFD whitepaper. **⚠️ Verification status: Pending.**
-
-### Official References
-
-| Document | Source | URL |
-|----------|--------|-----|
-| TNFD v1.0 Recommendations (Official) | TNFD | [PDF](https://tnfd.global/wp-content/uploads/2023/08/Recommendations-of-the-Taskforce-on-Nature-related-Financial-Disclosures.pdf) |
-| TNFD LEAP Complete Guide | TNFD | [Link](https://tnfd.global/publication/additional-guidance-on-assessment-of-nature-related-issues-the-leap-approach/) |
-| ENCORE Database | UNEP FI + Global Canopy | [Link](https://encorenature.org) |
-| IBAT Integrated Biodiversity Tool | BirdLife/IUCN/Conservation International/UNEP-WCMC | [Link](https://www.ibat-alliance.org) |
-| WRI Aqueduct Water Risk Atlas | World Resources Institute | [Link](https://www.wri.org/aqueduct) |
-| NGFS Nature-related Financial Risk Framework | Central Banks & Supervisors Network | [Link](https://www.ngfs.fr) |
+| Command | Purpose | Evidence Gate |
+|---|---|---|
+| `/tnfd` | Start assistant | None |
+| `/tnfd new` | New project | Company + sector + reporting boundary |
+| `/tnfd status` | Project state | Project state file |
+| `/tnfd benchmark` | Industry benchmarking | None |
+| `/tnfd locate` | Locate (C1-C4 + L1-L4) | Asset coordinates + supply chain layout |
+| `/tnfd evaluate` | Evaluate (E1-E4) | ENCORE/BRF screening output |
+| `/tnfd assess` | Assess (A1-A4) | LEAP output + financial data |
+| `/tnfd prepare` | Prepare (P1-P4) | 14 recommendations + General Requirements check |
+| `/tnfd audit` | Assurance readiness | All phase evidence |
+| `/tnfd save` | Save state | None |
+| `/tnfd reset` | Reset project | None |
 
 ---
 
@@ -244,60 +54,137 @@ The following cases are pending, unverified leads unless `data/case_claims_verif
 
 ```
 TNFD-disclosure/
-├── SKILL.md                    # Main Skill file
-├── QUICK_REFERENCE.md          # Agent quick reference
-├── CHANGELOG.md                # Version history
-├── prompts/                    # Modular Prompts
-│   ├── 00-benchmark.md         # Benchmarking
-│   ├── 01-locate.md           # Locate phase
-│   ├── 02-evaluate.md         # Evaluate phase
-│   ├── 03-assess.md           # Assess phase
-│   ├── 04-prepare.md          # Prepare phase
-│   └── 05-assurance.md         # Assurance phase
-├── references/                 # Knowledge base
-│   ├── tnfd-leap-complete-guide.md
-│   ├── big4-methodologies.md
-│   ├── china-esg-standards.md
-│   └── ...
-├── data/                       # Built-in data
-│   ├── encore_processed/       # ENCORE JSON
-│   └── tnfd_report_links.json
-└── scripts/
-    └── process_encore_data.py
+├── SKILL.md                        # Agent Skill definition (139 lines, v4 compliant)
+├── prompts/                        # Phase prompts
+│   ├── 00-benchmark.md             #   Phase 0: Benchmarking
+│   ├── 01-locate.md               #   Phase 1: Locate
+│   ├── 02-evaluate.md             #   Phase 2: Evaluate
+│   ├── 03-assess.md                #   Phase 3: Assess
+│   ├── 04-prepare.md              #   Phase 4: Prepare
+│   └── 05-assurance.md            #   Phase 5: Assurance readiness
+├── references/
+│   ├── framework/                  # TNFD official framework references
+│   │   ├── leap-components.md      #   C1-C4 / L1-L4 / E1-E4 / A1-A4 / P1-P4
+│   │   ├── recommendations-14.md  #   14 recommendations + evidence request
+│   │   ├── general-requirements.md  #   6 General Requirements gate
+│   │   ├── metrics-architecture.md  #  Core / Sector / Additional / Comply-or-explain
+│   │   └── value-chains.md         #   Upstream / downstream / traceability
+│   ├── localization/
+│   │   └── china-sustainability-reporting.md  # China regulatory mapping
+│   └── sectors/
+│       └── sector-guidance-index.json          # Sector guidance status index
+├── data/
+│   ├── case_claims_verification.json  # Claim Registry (12 pending)
+│   ├── tnfd_report_links.json        # TNFD official report hub index
+│   ├── encore_raw/                    # ENCORE raw data (2025.09)
+│   └── encore_processed/             # Parsed data (48 ecosystem services × 21 industries)
+├── scripts/
+│   ├── tnfd_handler.py              # /tnfd command handler
+│   ├── process_encore_data.py       # ENCORE data processing
+│   ├── validate_claims.py           # Claim validator (CI ready)
+│   └── smoke_test.sh                # Smoke test (4/4 passing)
+└── assets/
+    ├── tnfd-framework-infographic.png
+    └── contact-qr.png               # Feishu QR for contact
 ```
 
 ---
 
-## Contribution Guidelines
+## Fact Governance
 
-Issues and Pull Requests welcome!
+All case references in this Skill are governed by the Claim Registry:
 
-**Pre-submission Checklist**:
-- [ ] Methodology citations include sources
-- [ ] Data sources marked as free/paid
-- [ ] No statistics fabricated from memory
-- [ ] New Prompts tested before submission
+| Status | Meaning | Output Rule |
+|---|---|---|
+| `verified` | Registry has source URL + page | May be used as fact |
+| `pending` | Leads exist but not verified | Only as "unverified leads" |
+| `rejected` | Registry marks as unusable | Must not be output |
 
----
+Current Registry: **12 pending**, scanned across 10 active files by `validate_claims.py`. No pending claim is currently used as a confirmed fact.
 
-## License
-
-MIT License — see [LICENSE](LICENSE)
-
----
-
-## Appendix: China vs. International TNFD Status
-
-| Dimension | China | International |
-|-----------|-------|---------------|
-| **Regulatory Requirement** | Voluntary (Guidelines ≠ TNFD) | G20 push, ISSB referenced |
-| **Adopting Organizations** | Leading pioneers (LONGi, Muyuan) | Official TNFD hub + curated cases |
-| **Data Environment** | Ecological Red Lines non-public | WDPA/IBAT free/subscription |
-| **Methodology** | CASS-ESG 6.0 alignment | ENCORE + LEAP |
-| **Assurance Requirement** | No mandatory third-party assurance | TNFD provides assurance guidance |
-
-> 📊 Data sources: TNFD official (tnfd.global), IPE (Blue Map), CSRC official website (csrc.gov.cn)
+Run claim validation:
+```bash
+python3 scripts/validate_claims.py
+```
 
 ---
 
-*Last updated: 2026-04-27 | Case dates/figures: verification pending*
+## Quick Start
+
+**Install**
+
+```bash
+git clone https://github.com/newversionparty-cn/TNFD-disclosure.git
+cd TNFD-disclosure
+ln -s $(pwd) ~/.Hermes/skills/tnfd-disclosure
+```
+
+**Smoke test**
+
+```bash
+bash scripts/smoke_test.sh
+```
+
+**Example session**
+
+```
+User: We're a Shenzhen Stock Exchange 100 constituent. Do we have to do TNFD in 2026?
+
+TNFD-disclosure:
+• Mandatory: CSRC requires 2025 annual sustainability report by 2026-04-30.
+• TNFD itself is not mandatory in China, but can support voluntary alignment
+  for nature/biodiversity disclosures.
+• First determine whether your business has material nature-related topics.
+
+User: Generate a complete TNFD report for me.
+
+TNFD-disclosure:
+• Evidence gate not met — "complete report" not generated.
+• Recommended sequence: Scope → Benchmark → LEAP → Prepare → Assurance Readiness.
+• What data do you have: asset coordinates, supply chain, ENCORE?
+```
+
+---
+
+## Data Sources
+
+| Source | Use | Status |
+|---|---|---|
+| [TNFD Recommendations v1.0](https://tnfd.global/recommendations/) | Framework basis | ✅ Official |
+| [TNFD LEAP v1.1](https://tnfd.global/leap/) | Official component definitions | ✅ Official |
+| [ENCORE 2025.09](https://encorenature.org) | Dependency/impact pathway data | ✅ Integrated |
+| [WWF BRF](https://riskfilter.org/biodiversity) | Industry weighting + Exposure | ✅ Integrated |
+| [TNFD Sector Guidance](https://tnfd.global/sector-guidance) | Sector-specific guidance | ⚠️ Verify per index |
+| CSRC Sustainability Reporting Guidelines | China regulatory mapping | ✅ Integrated |
+| CASS-ESG 6.0 | China local standard | ⚠️ Official verification pending |
+
+---
+
+## Disclaimer
+
+This Skill provides methodological guidance and workflow support. **It does not constitute a formal audit or assurance opinion**.
+
+- Does not claim any company's report "fully aligns with TNFD"
+- Does not issue audit opinions, assurance opinions, "unqualified opinions", or "qualified opinions"
+- All case figures require source and page citation, or must be labeled as pending verification
+- Custom scoring models must not be presented as official TNFD metrics
+
+For formal disclosures, complete LEAP assessment and consult qualified professionals.
+
+---
+
+## Contact
+
+For TNFD disclosure consulting needs or collaboration:
+
+<div align="center">
+
+![Feishu QR](./assets/contact-qr.png)
+
+**Scan to connect · Note "TNFD"**
+
+</div>
+
+---
+
+*Maintainer: [Tom](https://github.com/newversionparty-cn) · Issues & PR welcome*
