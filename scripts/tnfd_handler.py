@@ -4,14 +4,16 @@ TNFD Engagement Handler — 处理 /tnfd 指令并输出 Sprint Banner + KPI
 """
 
 import json
+import os
 import sys
 from pathlib import Path
 from datetime import datetime
 
-TNFD_DIR = Path.home() / ".tnfd"
+TNFD_DIR = Path(os.environ.get("TNFD_HOME", Path.cwd() / ".tnfd"))
 CONFIG_FILE = TNFD_DIR / "config.json"
 STATE_FILE = TNFD_DIR / "project-state.json"
 COMMANDS_FILE = TNFD_DIR / "commands.json"
+PHASE_ORDER = ["benchmark", "locate", "evaluate", "assess", "prepare", "assurance"]
 
 # ─────────────────────────────────────────────────────────────
 # 初始化目录和文件
@@ -29,13 +31,13 @@ def init_tnfd():
                 "current_project": None,
                 "skill_config": {
                     "auto_trigger": True,
-                    "pua_enabled": True,
+                    "engagement_mode_enabled": True,
                     "strict_mode": False
                 }
-            }, f, indent=2)
+            }, f, indent=2, ensure_ascii=False)
     if not STATE_FILE.exists():
         with open(STATE_FILE, 'w') as f:
-            json.dump({"projects": {}, "last_updated": datetime.now().isoformat()}, f)
+            json.dump({"projects": {}, "last_updated": datetime.now().isoformat()}, f, ensure_ascii=False)
     if not COMMANDS_FILE.exists():
         # Generate default commands.json — required for handler to function
         default_commands = {
@@ -51,8 +53,8 @@ def init_tnfd():
                 "/tnfd evaluate": {"description": "Phase 2：评价", "phase": "evaluate"},
                 "/tnfd assess": {"description": "Phase 3：评估", "phase": "assess"},
                 "/tnfd prepare": {"description": "Phase 4：准备披露", "phase": "prepare"},
-                "/tnfd audit": {"description": "Phase 5：审计检查", "phase": "assurance"},
-                "/tnfd report": {"description": "生成完整 TNFD 报告", "phase": None},
+                "/tnfd audit": {"description": "Phase 5：鉴证准备度检查", "phase": "assurance"},
+                "/tnfd report": {"description": "生成报告包或缺口报告", "phase": None},
                 "/tnfd save": {"description": "保存项目状态", "phase": None},
                 "/tnfd reset": {"description": "重置项目", "phase": None}
             }
@@ -80,6 +82,9 @@ def load_commands():
     with open(COMMANDS_FILE) as f:
         return json.load(f)
 
+def default_phase_status():
+    return {phase: {"status": "not_started", "evidence_gate": "not_checked"} for phase in PHASE_ORDER}
+
 # ─────────────────────────────────────────────────────────────
 # Banner 输出
 # ─────────────────────────────────────────────────────────────
@@ -96,8 +101,9 @@ def sprint_banner(command, phase_info=None):
     if current_project and current_project in state.get("projects", {}):
         proj = state["projects"][current_project]
         project_info = proj.get("name", current_project)
-        leap = proj.get("leap_complete", [])
-        leap_status = " → ".join(leap) if leap else "未开始"
+        phase_status = proj.get("phase_status", default_phase_status())
+        completed = [p for p in PHASE_ORDER if phase_status.get(p, {}).get("status") == "completed"]
+        leap_status = " → ".join(completed) if completed else "未完成证据门禁"
     
     banner = f"""\
 ┌─────────┬────────────────────────────────────────────────────────┐
@@ -131,14 +137,16 @@ def status_banner():
     
     proj = state["projects"][current_project]
     
-    leap = proj.get("leap_complete", [])
-    phase_order = ["locate", "evaluate", "assess", "prepare", "assurance"]
+    phase_status = proj.get("phase_status", default_phase_status())
     leap_icons = []
-    for p in phase_order:
-        if p in leap:
-            leap_icons.append(f"✅ {p.capitalize()}")
+    for p in PHASE_ORDER:
+        status = phase_status.get(p, {}).get("status", "not_started")
+        if status == "completed":
+            leap_icons.append(f"✅ {p}")
+        elif status in ["in_progress", "evidence_pending"]:
+            leap_icons.append(f"🟡 {p}")
         else:
-            leap_icons.append(f"⬜ {p.capitalize()}")
+            leap_icons.append(f"⬜ {p}")
     
     risks = proj.get("risks_found", [])
     data_quality = proj.get("data_quality", "B")
@@ -166,13 +174,13 @@ def kpi_card(tnfd_count=0, risks_found=0, data_quality="B", leap_complete=None):
     if leap_complete is None:
         leap_complete = []
     
-    leap_progress = len(leap_complete) / 5
+    leap_progress = len(leap_complete) / len(PHASE_ORDER)
     
     quality_map = {"A": "⭐⭐⭐⭐⭐", "B": "⭐⭐⭐⭐", "C": "⭐⭐⭐", "D": "⭐⭐", "F": "⭐"}
     quality_stars = quality_map.get(data_quality, "⭐⭐⭐")
     
     # 计算综合评分
-    base_score = min(10, tnfd_count * 2 + len(leap_complete) * 1.5 + risks_found * 0.5)
+    base_score = min(10, tnfd_count * 2 + len(leap_complete) * 1.2 + risks_found * 0.5)
     score = min(5.0, base_score)
     
     score_emoji = "🥇" if score >= 4.5 else "🥈" if score >= 3.5 else "🥉" if score >= 2.5 else "📉"
@@ -183,11 +191,11 @@ def kpi_card(tnfd_count=0, risks_found=0, data_quality="B", leap_complete=None):
 │                                                              │
 │  本次会话绩效：                                              │
 │  · 完成任务数：{tnfd_count:<3}                                        │
-│  · LEAP 进度：{'█' * int(leap_progress * 10)}{'░' * (10 - int(leap_progress * 10))} {len(leap_complete)}/5       │
+│  · 证据门禁进度：{'█' * int(leap_progress * 10)}{'░' * (10 - int(leap_progress * 10))} {len(leap_complete)}/{len(PHASE_ORDER)}  │
 │  · 发现风险数：{risks_found:<3}                                        │
 │  · 数据质量：{quality_stars}                                │
 │                                                              │
-│  综合评级：{score_emoji} {score:.1f}                                               │
+│  内部进度评级：{score_emoji} {score:.1f}                                           │
 └─────────────────────────────────────────────────────────────┘
 """
     print(kpi)
@@ -210,10 +218,10 @@ def help_card():
 │  /tnfd evaluate   Phase 2：评价                             │
 │  /tnfd assess     Phase 3：评估                             │
 │  /tnfd prepare    Phase 4：准备                             │
-│  /tnfd audit      Phase 5：审计检查                         │
+│  /tnfd audit      Phase 5：鉴证准备度检查                   │
 │                                                              │
 │  报告生成：                                                  │
-│  /tnfd report    生成 TNFD 报告                             │
+│  /tnfd report    生成报告包或缺口报告                       │
 │                                                              │
 │  项目管理：                                                  │
 │  /tnfd save      保存项目状态                               │
@@ -226,7 +234,7 @@ def help_card():
 # ─────────────────────────────────────────────────────────────
 
 def update_phase(phase, data=None):
-    """更新项目阶段"""
+    """Mark a phase as in progress. Completion requires a separate evidence gate."""
     state = load_state()
     config = load_config()
     current_project = config.get("current_project")
@@ -240,7 +248,7 @@ def update_phase(phase, data=None):
             "name": current_project,
             "industry": "未设置",
             "current_phase": phase,
-            "leap_complete": [],
+            "phase_status": default_phase_status(),
             "risks_found": [],
             "data_quality": "B",
             "created_at": datetime.now().isoformat()
@@ -249,14 +257,17 @@ def update_phase(phase, data=None):
     proj = state["projects"][current_project]
     proj["current_phase"] = phase
     proj["last_updated"] = datetime.now().isoformat()
+    proj.setdefault("phase_status", default_phase_status())
+    if phase in proj["phase_status"]:
+        proj["phase_status"][phase] = {
+            "status": "evidence_pending" if phase in ["prepare", "assurance"] else "in_progress",
+            "evidence_gate": "not_checked",
+            "updated_at": datetime.now().isoformat()
+        }
     
     if data:
         for key, value in data.items():
             proj[key] = value
-    
-    # 标记 LEAP 完成
-    if phase not in proj["leap_complete"] and phase in ["locate", "evaluate", "assess", "prepare", "assurance"]:
-        proj["leap_complete"].append(phase)
     
     state["projects"][current_project] = proj
     state["last_updated"] = datetime.now().isoformat()
@@ -278,7 +289,7 @@ def create_project(name, industry):
         "name": name,
         "industry": industry,
         "current_phase": "phase0",
-        "leap_complete": [],
+        "phase_status": default_phase_status(),
         "risks_found": [],
         "data_quality": "B",
         "created_at": datetime.now().isoformat(),
@@ -306,8 +317,7 @@ def main():
         help_card()
         return
 
-    # Normalize: strip leading/trailing whitespace, lowercase
-    raw = sys.argv[1].strip().lower()
+    raw = " ".join(sys.argv[1:]).strip().lower()
     # Handle "/tnfd" (bare) and "/tnfd status" (with subcommand)
     if raw.startswith("/tnfd"):
         parts = raw.split()
@@ -325,6 +335,14 @@ def main():
         print("   /tnfd new — 新建项目")
         print("   /tnfd status — 查看状态")
         print("   /tnfd benchmark — 开始对标分析")
+        print(f"> 状态文件：{STATE_FILE}")
+    
+    elif command == "new":
+        name = sys.argv[3] if len(sys.argv) > 3 else "未命名项目"
+        industry = sys.argv[4] if len(sys.argv) > 4 else "未设置"
+        project_id = create_project(name, industry)
+        sprint_banner("新建 TNFD 项目")
+        print(f"> 项目已创建：{project_id}。请补充公司名称、行业、披露范围和价值链边界。")
     
     elif command == "status":
         status_banner()
@@ -341,12 +359,13 @@ def main():
             proj = state["projects"][current_project]
             risks_found = len(proj.get("risks_found", []))
             data_quality = proj.get("data_quality", "B")
-            leap_complete = proj.get("leap_complete", [])
+            phase_status = proj.get("phase_status", default_phase_status())
+            leap_complete = [p for p in PHASE_ORDER if phase_status.get(p, {}).get("status") == "completed"]
         kpi_card(tnfd_count, risks_found, data_quality, leap_complete)
     
     elif command in ["benchmark", "locate", "evaluate", "assess", "prepare", "assurance", "audit"]:
         phase_map = {
-            "benchmark": "phase0",
+            "benchmark": "benchmark",
             "locate": "locate",
             "evaluate": "evaluate",
             "assess": "assess",
@@ -357,7 +376,18 @@ def main():
         phase = phase_map.get(command, command)
         sprint_banner(f"/tnfd {command}", phase)
         update_phase(phase)
-        print(f"> 进入 /tnfd {command}。请按照提示执行。")
+        print(f"> 进入 /tnfd {command}。当前仅标记为 in_progress/evidence_pending；完成状态需通过证据门禁。")
+    
+    elif command == "report":
+        sprint_banner("/tnfd report")
+        print("> 生成报告前需完成 General Requirements、14 项披露建议、metrics 和 evidence index 检查。")
+        print("> 若证据不足，请输出 gap report，而不是完整 TNFD 报告。")
+    
+    elif command in ["save", "reset"]:
+        sprint_banner(f"/tnfd {command}")
+        print(f"> 状态文件位置：{STATE_FILE}")
+        if command == "reset":
+            print("> 为避免误删用户数据，请手动确认后删除状态文件。")
     
     elif command == "help":
         help_card()

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "last_reviewed": "2026-04-29",
+  "source_status": "Index for TNFD sector guidance. Verify each official page before using dates, versions, or sector-specific metrics in client-facing output.",
+  "rules": [
+    "Do not state a sector guidance status as final unless this index has status=final and an official_url.",
+    "If status is unknown or draft, label the guidance as a reference point rather than a final requirement.",
+    "Load sector-specific details only when the user's sector requires them."
+  ],
+  "sectors": [
+    {
+      "sector": "Financial institutions",
+      "subsectors": ["Banks", "Insurers", "Asset managers", "Development finance institutions"],
+      "status": "final",
+      "official_url": "https://tnfd.global/publication/additional-disclosure-guidance-for-financial-institutions/",
+      "notes": "Use for portfolio, lending, underwriting and investment exposure analysis."
+    },
+    {
+      "sector": "Metals and mining",
+      "status": "final",
+      "official_url": "https://tnfd.global/publication/additional-sector-guidance-metals-and-mining/",
+      "notes": "Verify version/date before citing."
+    },
+    {
+      "sector": "Oil and gas",
+      "status": "verify_before_use",
+      "official_url": "https://tnfd.global/publication/additional-sector-guidance-oil-and-gas/",
+      "notes": "Do not infer sector metrics without checking the official guidance."
+    },
+    {
+      "sector": "Electric utilities and power generators",
+      "status": "verify_before_use",
+      "official_url": "https://tnfd.global/publication/additional-sector-guidance-electric-utilities-and-power-generators/",
+      "notes": "Relevant for solar, wind, hydro, thermal and transmission assets."
+    },
+    {
+      "sector": "Food and agriculture",
+      "status": "verify_before_use",
+      "official_url": "https://tnfd.global/publication/additional-sector-guidance-food-and-agriculture/",
+      "notes": "Relevant for crops, livestock, food processing and agricultural inputs."
+    },
+    {
+      "sector": "Technology and communications",
+      "status": "draft_or_verify_before_use",
+      "official_url": "https://tnfd.global/publication/draft-sector-guidance-technology-communication/",
+      "notes": "Label as draft unless official page confirms final status."
+    }
+  ]
+}

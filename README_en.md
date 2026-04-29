@@ -151,7 +151,7 @@ TNFD v1.0 (published September 2023) is built on the **LEAP methodology**:
 - CSRC 2024 issued the "Listed Company Sustainability Report Guidelines" — **not identical to TNFD**
 - The 2026 A+H mandatory requirement applies to these Guidelines, not TNFD itself
 - TNFD remains in **voluntary adoption** phase in China
-- Leading adopters: LONGi Green Energy (Nov 2025), Muyuan Foods (Mar 2026)
+- Pending local case leads include LONGi Green Energy and Muyuan Foods; dates and report details require claim-registry verification.
 
 **Local Standards Reference**:
 - CASS-ESG 6.0 (China-EU alignment version)
@@ -181,29 +181,27 @@ Coverage check across all 14 TNFD Disclosure Recommendations (Governance 3 + Str
 
 ## Benchmark Cases
 
-### LONGi Green Energy (Solar PV)
+The following cases are pending, unverified leads unless `data/case_claims_verification.json` contains a source URL and report page number. Do not use dates, coverage rates, monetary figures, or assurance conclusions as verified facts before that check.
 
-**Report Info**:
-- Publication: November 2025 (COP30)
-- Report Type: Independent TNFD Report
-- Methodology: TNFD LEAP + EY CCaSS
+### LONGi Green Energy (Solar PV, pending case lead)
 
-**Key Highlights**:
-- 🏆 China's first independent TNFD report by a solar PV company
-- 💰 Natural capital assessment pilot (Jiaxing base saved ¥21.496M)
-- 🎯 2050 Biodiversity "Net Zero Loss" target
-- 🌿 2060 Nature "Net Positive Impact" vision
+**Pending verification topics**:
+- Publication date and report type
+- Whether LEAP and EY CCaSS were used (pending)
+- Natural capital assessment claims
+- Targets and third-party cooperation
 
 | Metric | Data |
 |--------|------|
-| LEAP Completeness | 4/4 phases complete |
-| 14-Item Coverage | 10/14 (71%) |
+| LEAP Completeness | pending verification |
+| 14-Item Coverage | pending verification |
 
-### Muyuan Foods (Aquaculture)
+### Muyuan Foods (Aquaculture, pending case lead)
 
-**Report Info**:
-- Publication: March 2026 (HKEX)
-- Methodology: TNFD LEAP + Deloitte + Natural Capital Protocol
+**Pending verification topics**:
+- Publication date and report venue
+- Whether LEAP, Deloitte, or Natural Capital Protocol were used (pending)
+- Monitoring indicators and frequency
 
 **Monitoring System**:
 
@@ -222,10 +220,10 @@ Coverage check across all 14 TNFD Disclosure Recommendations (Governance 3 + Str
 
 | Firm | Methodology | Core Keywords |
 |------|-------------|---------------|
-| **EY** | CCaSS | Natural Capital Monetization / Financial Integration / IUCN Partnership |
-| **Deloitte** | Climate & Sustainability | Digital Monitoring / Circular Economy / Natural Capital Protocol |
-| **PwC** | Five Things | 5-Step Framework / Checklist / Disclosure Template |
-| **KPMG** | NATURE Framework | Maturity Assessment / Phased Implementation / Roadmap Planning |
+| **EY** | pending verification | pending verification |
+| **Deloitte** | pending verification | pending verification |
+| **PwC** | pending verification | pending verification |
+| **KPMG** | pending verification | pending verification |
 
 > ⚠️ Big Four methodology references are based on public sources. For details, refer to each firm's official TNFD whitepaper. **⚠️ Verification status: Pending.**
 

@@ -15,6 +15,11 @@
 E 阶段主框架为 WWF BRF（应用层），其权重数据来自 ENCORE（底座层）。
 垂直集成关系：ENCORE（路径底座）→ BRF（权重调整 + Exposure）→ Sensitivity（人工层）
 
+方法边界：
+- ENCORE/BRF 可用于筛选、路径识别和优先级排序，不等于官方 TNFD 风险评分
+- `Dependency × Exposure × Sensitivity` 只能作为内部咨询优先级模型，不能作为 TNFD 官方指标输出
+- 所有阈值必须标注为待校准
+
 你的任务：
 1. 确认行业分类（ISIC 代码）
 2. 指导用户在 BRF INFORM 模块查询行业依赖/影响权重
@@ -188,18 +193,28 @@ Sensitivity = 该企业对自然损失的敏感程度。
 
 **Prompt**：
 ```
-所有三维数据已收集完毕。现在计算综合风险等级。
+所有三维数据已收集完毕。现在可以生成内部优先级排序分值。
 
-**风险等级公式**：
-Risk Level = Dependency × Exposure × Sensitivity
+**方法状态**：
+```yaml
+model_name: Dependency x Exposure x Sensitivity
+method_status: internal consulting heuristic
+not_official_tnfd_metric: true
+use: prioritisation only
+calibration_required: true
+limitations: 需要客户数据、专家判断和方法说明后才可进入外部披露
+```
+
+**内部优先级公式**：
+Priority Score = Dependency × Exposure × Sensitivity
 
 **计算示例**：
 - Dependency（依赖度）：0.7（高依赖水资源）
 - Exposure（暴露度）：0.6（高生物多样性压力区）
 - Sensitivity（敏感度）：4（高敏感，社区强依赖）
-- 风险等级 = 0.7 × 0.6 × 4 = 1.68（高风险）
+- 内部优先级分值 = 0.7 × 0.6 × 4 = 1.68
 
-**风险等级阈值**：
+**内部阈值（待校准，不得称为 TNFD 官方阈值）**：
 | 风险分值 | 等级 | 行动建议 |
 |----------|------|---------|
 | 0 - 0.5 | 低风险 | 常规管理，年度监控 |
@@ -211,14 +226,16 @@ Risk Level = Dependency × Exposure × Sensitivity
 - Dependency（依赖度）：0-1
 - Exposure（暴露度）：0-1
 - Sensitivity（敏感度）：1-5
-- **风险分值 = Dependency × Exposure × Sensitivity**：
-- **风险等级**：
+- **内部优先级分值 = Dependency × Exposure × Sensitivity**：
+- **优先级等级（内部）**：
+- **是否可披露**：否，除非补充方法说明、校准依据和局限性
 
 **Deliverable（E阶段交付物）**：
 1. BRF 依赖度/影响度矩阵 ✅
 2. Exposure 评分 ✅
 3. Sensitivity 评分 ✅
-4. 综合风险等级 ✅
+4. 内部优先级排序 ✅
+5. 披露可用性与局限性说明 ✅
 ```
 
 ---
@@ -259,8 +276,11 @@ Risk Level = Dependency × Exposure × Sensitivity
   },
   "risk_level": {
     "formula": "Dependency × Exposure × Sensitivity",
+    "method_status": "internal consulting heuristic",
+    "not_official_tnfd_metric": true,
+    "calibration_required": true,
     "score": 0.0-10.0,
-    "tier": "Low/Medium/High/Very High",
+    "tier": "Low/Medium/High/Very High (internal)",
     "priority_actions": ["..."]
   }
 }

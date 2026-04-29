@@ -12,8 +12,8 @@
 |------------|---------|-----------|---------|
 | 「TNFD 是什么」 | `tnfd.intro` | `00-benchmark.md` | 需求澄清 + 行业匹配 |
 | 「我想做 TNFD 披露」 | `tnfd.benchmark.start` | `00-benchmark.md` | 对标分析 + 差距框架 |
-| 「光伏行业 TNFD」 | `tnfd.benchmark.solar` | `00-benchmark.md` | 隆基/协鑫案例 + 官方库链接 |
-| 「养殖行业 TNFD」 | `tnfd.benchmark.agri` | `00-benchmark.md` | 牧原/正大案例 + 官方库链接 |
+| 「光伏行业 TNFD」 | `tnfd.benchmark.solar` | `00-benchmark.md` | 候选案例 + claim registry 核验 |
+| 「养殖行业 TNFD」 | `tnfd.benchmark.agri` | `00-benchmark.md` | 候选案例 + claim registry 核验 |
 | 「想看隆基报告 PDF」 | `tnfd.report.request` | `00-benchmark.md` | TNFD 官方库链接 + 官网链接 |
 | 「想看牧原报告 PDF」 | `tnfd.report.request` | `00-benchmark.md` | TNFD 官方库链接 + HKEX 链接 |
 | 「TNFD 官方报告库」 | `tnfd.library` | `00-benchmark.md` | https://tnfd.global/knowledge-hub/example-tnfd-reporting/ |
@@ -116,16 +116,16 @@
 |------|------|---------|---------|
 | **L1** | 温和提醒 | 数据质量低/跳过步骤 | 旁白提醒 + 建议补充 |
 | **L2** | 红旗警告 | 关键数据缺失/披露不完整 | 红旗清单 + 审计风险提示 |
-| **L3** | 保留意见 | 多次忽视建议/数据质量持续差 | 模拟审计保留意见 + 改进路线图 |
-| **L4** | 无法鉴证 | 核心数据完全缺失 | 「基于现有数据，我们无法出具鉴证意见」 |
+| **L3** | 重大整改 | 多次忽视建议/数据质量持续差 | 鉴证准备度重大缺口 + 改进路线图 |
+| **L4** | 不建议提交外部鉴证 | 核心数据完全缺失 | 「基于现有数据，暂不具备外部鉴证准备度」 |
 
 **旁白前缀**：
 - L1: `> ▎ 提醒：...`
 - L2: `> ▎ 红旗信号：...`
-- L3: `> ▎ 模拟审计意见：保留意见。...`
-- L4: `> ▎ 基于现有数据，我们无法出具鉴证意见。...`
+- L3: `> ▎ 鉴证准备度：需要重大整改。...`
+- L4: `> ▎ 基于现有数据，暂不具备外部鉴证准备度。...`
 
-> ⚠️ L3/L4 旁白仅供参考。实际审计意见需持牌审计师出具。
+> ⚠️ L3/L4 仅为内部 assurance-readiness review，不构成正式鉴证意见。
 
 ---
 

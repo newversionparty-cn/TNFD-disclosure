@@ -11,6 +11,7 @@ __pycache__/
 # 本地配置
 .env
 *.local
+.tnfd/
 
 # macOS
 .DS_Store
