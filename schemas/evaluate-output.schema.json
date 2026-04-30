@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TNFD LEA Evaluate Output",
+  "type": "object",
+  "properties": {
+    "dependency_impact_matrix": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "activity": {"type": "string"},
+          "dependency": {"type": "string"},
+          "impact": {"type": "string"},
+          "importance": {"type": "string"},
+          "evidence_status": {"type": "string"},
+          "confidence": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "method_status": {"type": "string"}
+  },
+  "additionalProperties": true
+}

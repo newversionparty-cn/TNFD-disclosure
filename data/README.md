@@ -24,6 +24,8 @@ data/
 │
 ├── tnfd_report_links.json         # TNFD 报告链接清单（JSON 格式）
 │
+├── nature_tools_leap_mapping.json # ENCORE / IBAT 在 LEAP 中的步骤映射
+│
 └── README.md                      # 本文件
 ```
 
@@ -35,7 +37,7 @@ data/
 
 - **来源**：https://encorenature.org/en/data-and-methodology/methodology
 - **版本**：September 2025
-- **下载**：https://encorenature.org/ENCORE_DataFiles_Oct-2025.zip
+- **下载**：通过 ENCORE Methodology & Downloads 页面登录后下载 updated knowledge base
 - **许可**：CC BY-SA 4.0
 
 ### TNFD 报告链接
@@ -43,6 +45,17 @@ data/
 - **来源**：https://tnfd.global/knowledge-hub/example-tnfd-reporting/
 - **数量**：416+ 家采纳者
 - **更新**：建议每季度同步一次
+
+### ENCORE / IBAT 工具映射
+
+- **来源**：
+  - https://encorenature.org/en/data-and-methodology/methodology
+  - https://www.ibat-alliance.org/data
+- **文件**：`nature_tools_leap_mapping.json`
+- **用途**：告诉 Agent 在 LEAP 哪一步使用 ENCORE 或 IBAT：
+  - ENCORE：主要用于 Evaluate 的行业/活动依赖与压力筛查
+  - IBAT：主要用于 Locate 的敏感地点和生物多样性筛查
+- **边界**：IBAT 站点报告、GIS 下载、API、map tiles 和派生数据可能需要许可；不得把公开介绍页当作站点级证据。
 
 ---
 
@@ -64,6 +77,7 @@ python3 scripts/process_encore_data.py
 | `pressure_by_industry.json` | 21 个行业影响关系 | Evaluate 阶段行业匹配 |
 | `industry_summary.json` | 行业摘要统计 | 快速查询/对标分析 |
 | `tnfd_report_links.json` | 报告链接清单 | 对标分析阶段发送 PDF |
+| `nature_tools_leap_mapping.json` | ENCORE / IBAT LEAP 映射 | 数据源选择和阶段路由 |
 
 ---
 

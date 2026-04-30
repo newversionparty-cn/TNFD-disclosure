@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TNFD LEA Project",
+  "type": "object",
+  "required": ["mode", "role_frame", "lea_outputs"],
+  "properties": {
+    "mode": {"type": "string", "const": "beginner_lea"},
+    "role_frame": {"type": "string", "const": "big4_pua_senior"},
+    "partner_pressure_level": {"type": "string", "enum": ["L1", "L2", "L3", "L4"]},
+    "lea_outputs": {
+      "type": "object",
+      "properties": {
+        "intake": {"type": "object"},
+        "locate": {"type": "object"},
+        "evaluate": {"type": "object"},
+        "assess": {"type": "object"}
+      },
+      "additionalProperties": true
+    },
+    "artifacts": {"type": "object"}
+  },
+  "additionalProperties": true
+}

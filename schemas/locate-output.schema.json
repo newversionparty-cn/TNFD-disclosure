@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TNFD LEA Locate Output",
+  "type": "object",
+  "properties": {
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "asset": {"type": "string"},
+          "type": {"type": "string"},
+          "address_or_city": {"type": "string"},
+          "data_precision": {"type": "string"},
+          "nature_interface": {"type": "string"},
+          "initial_sensitivity": {"type": "string"},
+          "gap": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "confidence": {"type": "string", "enum": ["low", "medium", "high"]}
+  },
+  "additionalProperties": true
+}

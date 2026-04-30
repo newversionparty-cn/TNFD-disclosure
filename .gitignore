@@ -12,6 +12,7 @@ __pycache__/
 .env
 *.local
 .tnfd/
+outputs/
 
 # macOS
 .DS_Store

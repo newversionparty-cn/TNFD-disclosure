@@ -2,7 +2,7 @@
 
 > 用途：Agent 快速查找意图映射和输出格式  
 > 版本：1.0.0  
-> 最后更新：2026-04-18
+> 最后更新：2026-04-30
 
 ---
 
@@ -10,6 +10,10 @@
 
 | 用户输入示例 | 识别意图 | 调用 Prompt | 输出格式 |
 |------------|---------|-----------|---------|
+| 「我完全不懂 TNFD」 | `tnfd.novice.start` | `00-novice-start.md` | 小白 LEA 向导 |
+| `/tnfd start` | `tnfd.novice.start` | `00-novice-start.md` | Partner Brief + 5 问 |
+| `/tnfd intake` | `tnfd.project.intake` | `01-project-intake.md` | Intake workpaper |
+| `/tnfd export` | `tnfd.export` | `06-export-artifacts.md` | Excel/PDF 导出 |
 | 「TNFD 是什么」 | `tnfd.intro` | `00-benchmark.md` | 需求澄清 + 行业匹配 |
 | 「我想做 TNFD 披露」 | `tnfd.benchmark.start` | `00-benchmark.md` | 对标分析 + 差距框架 |
 | 「光伏行业 TNFD」 | `tnfd.benchmark.solar` | `00-benchmark.md` | 候选案例 + claim registry 核验 |
@@ -23,6 +27,7 @@
 | 「Prepare 阶段」 | `tnfd.leap.prepare` | `04-prepare.md` | 报告模板 |
 | 「披露完整吗」 | `tnfd.assurance.check` | `05-assurance.md` | 检查清单 |
 | 「数据从哪来」 | `tnfd.data.sources` | references/data-sources... | 数据源清单 |
+| 「ENCORE / IBAT 怎么用」 | `tnfd.data.tool_mapping` | `references/data-sources/encore-ibat-leap-guide.md` | LEAP 步骤映射 |
 | 「四大怎么做」 | `tnfd.methodology.big4` | references/big4-methodologies.md | 方法论对照 |
 
 ---
@@ -152,6 +157,13 @@
 | **Evaluate** | 依赖/影响 Top5 完整 | ISIC 代码准确 | ENCORE 数据引用 |
 | **Assess** | 风险全覆盖 | 量化方法合理 | 假设有依据 |
 | **Prepare** | 14 项覆盖≥12 项 | 数据一致 | 第三方验证 |
+
+### ENCORE / IBAT 使用位置
+
+| Tool | LEAP 主步骤 | 用途 | 边界 |
+|------|-------------|------|------|
+| **ENCORE** | Evaluate | 行业/活动依赖和压力筛查 | 不是站点敏感性证据，不是官方 TNFD 风险评分 |
+| **IBAT** | Locate | 保护区、KBA、物种和派生生物多样性图层筛查 | 不爬取付费输出；站点结论需用户提供许可报告或 GIS 证据 |
 
 ---
 

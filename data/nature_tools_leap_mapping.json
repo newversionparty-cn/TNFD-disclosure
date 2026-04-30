@@ -1,0 +1,189 @@
+{
+  "schema_version": "1.0",
+  "last_reviewed": "2026-04-30",
+  "review_method": "Official public web pages plus local ENCORE September 2025 files already bundled in the skill.",
+  "tools": [
+    {
+      "id": "encore",
+      "name": "ENCORE",
+      "full_name": "Exploring Natural Capital Opportunities, Risks and Exposure",
+      "source_type": "public_online_tool_and_downloadable_knowledge_base",
+      "source_status": "Public website; updated knowledge-base download requires sign-up/login on the ENCORE website. Local Skill files include the September 2025 ENCORE knowledge-base CSVs.",
+      "official_urls": [
+        "https://encorenature.org/en/about/about-encore",
+        "https://encorenature.org/en/data-and-methodology/methodology",
+        "https://encorenature.org/en/data-and-methodology/materiality",
+        "https://encorenature.org/en/data-and-methodology/limitations"
+      ],
+      "local_skill_data": {
+        "version_label": "Updated ENCORE knowledge base September 2025",
+        "path": "data/encore_raw/",
+        "activity_count": 271,
+        "ecosystem_service_level_1_count": 25,
+        "pressure_count": 13,
+        "key_files": [
+          "03. Dependency links.csv",
+          "05. Pressure links.csv",
+          "06. Dependency mat ratings.csv",
+          "07. Pressure mat ratings.csv",
+          "14. EXIOBASE NACE ISIC crosswalk.csv",
+          "16. Upstream links.csv",
+          "17. Downstream links.csv"
+        ]
+      },
+      "analysis_value": [
+        "Maps economic activities to potential nature dependencies.",
+        "Maps economic activities to potential pressures / impact drivers.",
+        "Provides materiality ratings for dependency and pressure links on a five-point VH/H/M/L/VL scale.",
+        "Supports beginner-friendly industry screening before detailed site evidence is available."
+      ],
+      "leap_use": {
+        "intake_scope": {
+          "priority": "supporting",
+          "use": "Map business description, products or activities to candidate ISIC activity; identify value-chain nodes needing review.",
+          "required_inputs": ["business_description", "sector_or_product", "optional_isic_code"],
+          "output": "Candidate ISIC / activity mapping with confidence and classification gap."
+        },
+        "locate": {
+          "priority": "secondary",
+          "use": "Flag which activity-location combinations deserve spatial screening.",
+          "required_inputs": ["asset_or_activity_list"],
+          "output": "Nature interface hypothesis; not site-sensitive-location evidence."
+        },
+        "evaluate": {
+          "priority": "primary",
+          "use": "Generate dependency and pressure matrix, materiality screen, and priority issue list.",
+          "required_inputs": ["business_activity_or_isic", "process_description_if_available"],
+          "output": "Dependency / impact matrix with ENCORE evidence status and confidence."
+        },
+        "assess": {
+          "priority": "supporting",
+          "use": "Translate dependencies and pressures into risk / opportunity triggers and financial pathways.",
+          "required_inputs": ["evaluate_matrix", "locate_context", "financial_or_operational_data_if_available"],
+          "output": "Risk and opportunity register; no monetary amount without user data."
+        },
+        "prepare": {
+          "priority": "evidence_appendix",
+          "use": "Describe methodology and evidence limitations for disclosure drafts.",
+          "required_inputs": ["source_date", "method_note", "review_owner"],
+          "output": "Method note and evidence index."
+        }
+      },
+      "not_for": [
+        "Official TNFD risk score",
+        "Location-specific site sensitivity proof",
+        "Financial materiality conclusion by itself",
+        "Formal assurance evidence by itself"
+      ]
+    },
+    {
+      "id": "ibat",
+      "name": "IBAT",
+      "full_name": "Integrated Biodiversity Assessment Tool",
+      "source_type": "authoritative_biodiversity_data_platform",
+      "source_status": "Public website explains datasets and access options; site reports, GIS downloads, API access and derived layers may require subscription, pay-as-you-go purchase, or other license.",
+      "official_urls": [
+        "https://www.ibat-alliance.org/about",
+        "https://www.ibat-alliance.org/data",
+        "https://www.ibat-alliance.org/pricing"
+      ],
+      "public_page_snapshot": {
+        "observed_at": "2026-04-30",
+        "note": "Official IBAT pages display live counters; verify before reuse in external reporting.",
+        "datasets_observed": [
+          {
+            "dataset": "World Database on Protected and Conserved Areas",
+            "observed_live_data_count": "320275",
+            "observed_last_updated": "2026-04-01"
+          },
+          {
+            "dataset": "IUCN Red List of Threatened Species",
+            "observed_live_data_count": "172600",
+            "observed_last_updated": "2025-11-27"
+          },
+          {
+            "dataset": "World Database of Key Biodiversity Areas",
+            "observed_live_data_count": "16509",
+            "observed_last_updated": "2026-04-10"
+          }
+        ]
+      },
+      "core_datasets": [
+        "IUCN Red List of Threatened Species",
+        "World Database on Protected and Conserved Areas (WDPCA, combining WDPA and WD-OECM)",
+        "World Database of Key Biodiversity Areas (WDKBA)"
+      ],
+      "derived_datasets": [
+        "Species Threat Abatement and Restoration metric (STAR)",
+        "Rarity-weighted species richness"
+      ],
+      "analysis_value": [
+        "Screens proximity and overlap with protected and conserved areas.",
+        "Screens Key Biodiversity Areas and threatened species context where licensed data is available.",
+        "Supports biodiversity-sensitive location identification and risk prioritisation.",
+        "Provides reports and GIS downloads under access rights."
+      ],
+      "leap_use": {
+        "intake_scope": {
+          "priority": "supporting",
+          "use": "Identify whether the project needs site-level biodiversity screening.",
+          "required_inputs": ["site_list", "countries_or_regions", "analysis_purpose"],
+          "output": "IBAT evidence need and license/access status."
+        },
+        "locate": {
+          "priority": "primary",
+          "use": "Support L4 sensitive-location screening for protected areas, KBAs, threatened species, STAR or rarity-weighted richness where evidence is available.",
+          "required_inputs": ["site_coordinates_or_boundary", "buffer_or_screening_method", "licensed_ibat_report_or_gis_output_if_used"],
+          "output": "Biodiversity sensitivity evidence with source, date, buffer and confidence."
+        },
+        "evaluate": {
+          "priority": "supporting",
+          "use": "Modify priority of ENCORE dependency / pressure issues based on location sensitivity.",
+          "required_inputs": ["locate_sensitive_location_result", "encore_dependency_pressure_matrix"],
+          "output": "Location modifier for dependency / pressure prioritisation."
+        },
+        "assess": {
+          "priority": "supporting",
+          "use": "Support regulatory, reputational, physical, permitting, mitigation and restoration risk/opportunity pathways.",
+          "required_inputs": ["locate_result", "business_criticality", "permits_or_project_timeline_if_available"],
+          "output": "Risk / opportunity register entries tied to biodiversity evidence."
+        },
+        "prepare": {
+          "priority": "evidence_appendix",
+          "use": "Cite licensed IBAT reports or public dataset sources in evidence index where permitted.",
+          "required_inputs": ["report_id_or_file", "license_status", "date", "method"],
+          "output": "Evidence index entry and limitations note."
+        }
+      },
+      "not_for": [
+        "Unlicensed scraping of app outputs, reports, API results, map tiles or GIS downloads",
+        "Replacing local ecological impact assessment",
+        "Claiming sensitive KBAs are fully represented where the source says sensitive KBAs are not listed",
+        "Financial quantification without user operational and financial data"
+      ]
+    }
+  ],
+  "combined_workflow": [
+    {
+      "step": "1_intake",
+      "action": "Collect business activity and site list. Use ENCORE for candidate ISIC/activity mapping and IBAT only to identify spatial evidence needs."
+    },
+    {
+      "step": "2_locate",
+      "action": "Use site coordinates and IBAT / WDPA / WDKBA / IUCN evidence where available to screen sensitive locations. If only city-level data exists, mark low confidence."
+    },
+    {
+      "step": "3_evaluate",
+      "action": "Use ENCORE to generate dependency and pressure matrix. Add IBAT/location modifier only when site evidence exists."
+    },
+    {
+      "step": "4_assess",
+      "action": "Translate ENCORE pathways and IBAT/location evidence into risk and opportunity pathways. Do not invent monetary impacts."
+    },
+    {
+      "step": "5_prepare",
+      "action": "Use both tools as documented evidence sources with method limits, not as standalone disclosure proof."
+    }
+  ],
+  "default_caveat": "ENCORE and IBAT are screening and evidence-support tools. They support LEAP analysis but do not replace company evidence, expert ecological review, stakeholder engagement, management judgement, or formal assurance."
+}

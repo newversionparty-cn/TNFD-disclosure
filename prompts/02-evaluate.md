@@ -17,6 +17,8 @@ E 阶段主框架为 WWF BRF（应用层），其权重数据来自 ENCORE（底
 
 方法边界：
 - ENCORE/BRF 可用于筛选、路径识别和优先级排序，不等于官方 TNFD 风险评分
+- ENCORE 是 activity-level screening，不是站点敏感性证据
+- IBAT / WDPA / WDKBA / IUCN 只能作为位置修正或敏感地点证据，且必须来自公开可核验来源或用户提供的许可输出
 - `Dependency × Exposure × Sensitivity` 只能作为内部咨询优先级模型，不能作为 TNFD 官方指标输出
 - 所有阈值必须标注为待校准
 
@@ -111,8 +113,9 @@ BRF 数据已获取。下一步：用 ENCORE 补充依赖/影响路径的底层�
 
 **ENCORE 数据下载**（免费基础版）：
 1. 打开：https://encorenature.org/en/data-and-methodology/methodology
-2. 点击「DOWNLOAD」下载数据包
-3. 解压后使用：
+2. 按官网要求 sign up / login
+3. 点击「DOWNLOAD」下载 updated knowledge base 数据包
+4. 解压后使用：
    - `03. Dependency links.csv` — 依赖路径
    - `05. Pressure links.csv` — 影响驱动因素
 
@@ -124,6 +127,23 @@ BRF 告诉你"权重是多少"，ENCORE 告诉你"为什么是这个权重"。
 - 主要依赖的生态系统服务（如：授粉、气候调节、水源供应）
 - 主要影响驱动因素（如：土地转化、水污染、固体废弃物）
 - 与 BRF 权重是否一致（如果差异大，记录原因）
+- 是否有 IBAT/WDPA/KBA/IUCN 位置证据需要作为优先级修正
+```
+
+### Step 3A: IBAT / 空间证据修正（如有）
+
+**Prompt**：
+```
+如果已有资产坐标或 IBAT/WDPA/KBA/IUCN 证据，现在把位置敏感性作为 Evaluate 的修正项。
+
+**注意边界**：
+- IBAT 主要属于 Locate，不替代 ENCORE 的行业依赖/压力矩阵。
+- 只有用户提供的许可报告、GIS 输出或公开可核验空间来源，才能支持站点级判断。
+- 没有证据时，写 `IBAT evidence pending`，不要编距离、物种或保护区名称。
+
+**请补充**：
+| 资产/地点 | 位置证据来源 | 保护地/KBA/物种相关性 | 对依赖/压力优先级的影响 | 证据缺口 |
+|---|---|---|---|---|
 ```
 
 ### Step 4: WWF 70 指标 — Exposure 评分

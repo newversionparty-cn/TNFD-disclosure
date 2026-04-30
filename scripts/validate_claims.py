@@ -32,6 +32,13 @@ SAFE_MARKERS = [
     "verification_status",
     "claim registry",
     "registry",
+    "lens",
+    "style",
+    "内部方法论",
+    "Readiness lens",
+    "Diagnostic lens",
+    "Materiality lens",
+    "Financial Pathway lens",
     "不得作为确定事实",
     "不能作为确定事实",
 ]

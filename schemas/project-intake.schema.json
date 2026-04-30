@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TNFD LEA Project Intake",
+  "type": "object",
+  "required": ["company", "business_description", "sector", "purpose", "data_maturity"],
+  "properties": {
+    "company": {"type": "string"},
+    "business_description": {"type": "string"},
+    "sector": {"type": "string"},
+    "purpose": {"type": "string"},
+    "boundary": {"type": "string", "enum": ["direct_operations", "value_chain", "unknown"]},
+    "locations": {"type": "array", "items": {"type": "string"}},
+    "data_maturity": {"type": "string", "enum": ["low", "medium", "high", "unknown"]},
+    "confidence": {"type": "string", "enum": ["low", "medium", "high"]}
+  },
+  "additionalProperties": true
+}

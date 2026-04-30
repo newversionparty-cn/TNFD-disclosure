@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TNFD LEA Assess Output",
+  "type": "object",
+  "properties": {
+    "risk_opportunity_register": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "risk_or_opportunity": {"type": "string"},
+          "type": {"type": "string"},
+          "trigger": {"type": "string"},
+          "business_impact": {"type": "string"},
+          "financial_pathway": {"type": "string"},
+          "priority": {"type": "string"},
+          "required_evidence": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "confidence": {"type": "string", "enum": ["low", "medium", "high"]}
+  },
+  "additionalProperties": true
+}

@@ -1,6 +1,6 @@
 # TNFD 数据源注册与下载完整指南
 
-> 实测时间：2026 年 4 月 18 日  
+> 实测时间：2026 年 4 月 30 日
 > 用途：TNFD Skill 用户数据获取操作手册
 
 ---
@@ -9,7 +9,8 @@
 
 | 数据源 | 用途 | 注册 | 下载大小 | 更新时间 | 难度 |
 |--------|------|------|---------|---------|------|
-| **ENCORE** | 行业依赖/影响矩阵 | ❌ 无需 | 2MB | 年度 | ⭐ |
+| **ENCORE** | 行业依赖/影响矩阵 | ✅ 官网登录 | 2MB 左右 | 年度 | ⭐ |
+| **IBAT** | 生物多样性敏感地点筛查 | ⚠️ 公开介绍 + 许可报告/GIS | 不定 | 按数据集 | ⭐⭐⭐ |
 | **WDPA** | 全球保护区边界 | ✅ 免费 | 600MB | 月度 | ⭐⭐ |
 | **WRI Aqueduct** | 水风险数据 | ✅ 免费 | 50-200MB | 年度 | ⭐⭐ |
 | **IPE 蔚蓝地图** | 中国污染数据 | ❌ 无需 | - | 实时 | ⭐ |
@@ -35,9 +36,10 @@ https://encorenature.org/en/data-and-methodology/methodology
 - 滚动到页面中部
 - 找到「Download the updated ENCORE knowledge base」标题
 
-**步骤 3**：点击下载
-- 点击「DOWNLOAD」按钮（蓝色）
-- 自动开始下载 `ENCORE_DataFiles_Oct-2025.zip`
+**步骤 3**：登录后下载
+- 官网当前说明：下载 updated knowledge base 需要 sign up 或 login
+- 登录后点击「DOWNLOAD」按钮
+- 下载得到类似 `ENCORE_DataFiles_Oct-2025.zip` 的数据包
 
 **步骤 4**：解压文件
 ```bash
@@ -93,6 +95,16 @@ A: ENCORE 使用 ISIC 行业分类，可对照：
 
 **Q: 文件太大打不开怎么办？**
 A: 用 Excel 打开时选择「仅加载前 1000 行」，或用 Google Sheets
+
+### LEAP 使用边界
+
+| LEAP 步骤 | ENCORE 用法 | 限制 |
+|---|---|---|
+| Intake | 将业务描述映射到候选 ISIC / 经济活动 | 需标注分类假设 |
+| Locate | 只用于提示哪些活动需要空间筛查 | ENCORE 不是 location-specific |
+| Evaluate | 依赖/压力矩阵和重要性初筛核心来源 | 不是官方 TNFD 风险评分 |
+| Assess | 转成风险/机会触发路径 | 不能直接编金额 |
+| Prepare | 方法说明和证据索引 | 不能单独支撑披露结论 |
 
 ---
 
@@ -166,7 +178,6 @@ WDPA_WDOECM_Dec2024_Public_shp/
 | 字段 | 含义 |
 |------|------|
 | NAME | 保护区名称 |
-| ISO3 | 国家代码（CHN=中国） |
 | IUCN_CAT | 保护区类别（I-VI） |
 | REP_AREA | 保护区面积（km²） |
 | STATUS | 状态（Designated=官方指定） |
@@ -193,7 +204,54 @@ A:
 
 ---
 
-## 3. WRI Aqueduct（水风险数据）
+## 3. IBAT（生物多样性敏感地点筛查）
+
+**用途**：识别资产或项目是否涉及保护地、保育地、Key Biodiversity Areas、受威胁物种、STAR 或其他生物多样性敏感性证据。
+**难度**：⭐⭐⭐
+**时间**：取决于是否已有坐标、边界和许可输出。
+
+### 官方公开信息
+
+IBAT 官网公开说明其维护/承载的核心数据集包括：
+
+| 数据集 | LEAP 用途 |
+|---|---|
+| IUCN Red List of Threatened Species | 物种敏感性和受威胁物种背景 |
+| World Database on Protected and Conserved Areas (WDPCA, including WDPA and WD-OECM) | 保护地/保育地筛查 |
+| World Database of Key Biodiversity Areas (WDKBA) | KBA 敏感地点筛查 |
+| STAR / rarity-weighted richness | 恢复、减缓和生物多样性重要性辅助筛查 |
+
+### 许可边界
+
+- 公开网页可以用于说明 IBAT 的数据范围、适用场景和局限。
+- 站点报告、GIS 下载、API、map tiles、STAR、rarity-weighted richness 等输出可能需要订阅、PAYG 或其他许可。
+- 不要爬取 IBAT app、付费报告、API 结果、地图瓦片、GIS 下载或派生数据。
+- 如果用户没有授权输出，只能列为证据缺口，不能生成站点级结论。
+
+### LEAP 使用边界
+
+| LEAP 步骤 | IBAT 用法 | 限制 |
+|---|---|---|
+| Intake | 判断项目是否需要生物多样性敏感地点筛查 | 需要资产/项目范围 |
+| Locate | L4 敏感地点筛查的核心来源之一 | 需要坐标/边界和许可或公开空间证据 |
+| Evaluate | 给 ENCORE 依赖/压力加位置修正 | 不能替代行业依赖/压力矩阵 |
+| Assess | 支持监管、声誉、许可、缓解和恢复风险路径 | 不能单独量化财务影响 |
+| Prepare | 作为证据索引和方法说明 | 需披露来源、日期、buffer、许可和限制 |
+
+### 最低证据格式
+
+| 字段 | 说明 |
+|---|---|
+| Site name | 资产或项目名称 |
+| Coordinates / boundary | 经纬度、边界文件或可核验地址 |
+| IBAT evidence type | Proximity report / GIS extract / API result / public source |
+| Source date | 报告或数据日期 |
+| Buffer / method | 筛查半径、重叠规则或方法 |
+| License status | 用户是否有权用于本项目 |
+
+---
+
+## 4. WRI Aqueduct（水风险数据）
 
 **用途**：获取全球水风险评级数据  
 **难度**：⭐⭐  
@@ -263,7 +321,7 @@ A:
 
 ---
 
-## 4. IPE 蔚蓝地图（中国污染数据）
+## 5. IPE 蔚蓝地图（中国污染数据）
 
 **用途**：查询中国企业环境违规记录  
 **难度**：⭐（最简单）  
@@ -313,7 +371,7 @@ A:
 
 ---
 
-## 5. 国家生态数据中心（中国生态数据）
+## 6. 国家生态数据中心（中国生态数据）
 
 **用途**：获取中国区域生态系统观测数据  
 **难度**：⭐⭐⭐  
@@ -368,7 +426,7 @@ A:
 
 ---
 
-## 6. 地理遥感生态网（中国土地利用）
+## 7. 地理遥感生态网（中国土地利用）
 
 **用途**：获取中国土地利用、植被指数等数据  
 **难度**：⭐⭐⭐  
@@ -460,6 +518,10 @@ TNFD_Data/
 ## 参考文档
 
 - [ENCORE 方法论](https://encorenature.org/en/data-and-methodology/methodology)
+- [ENCORE 重要性评级](https://encorenature.org/en/data-and-methodology/materiality)
+- [ENCORE 局限](https://encorenature.org/en/data-and-methodology/limitations)
+- [IBAT 数据说明](https://www.ibat-alliance.org/data)
+- [IBAT 关于与访问边界](https://www.ibat-alliance.org/about)
 - [WDPA 使用指南](https://www.protectedplanet.net/en/theprotectedplanet-database)
 - [WRI Aqueduct 文档](https://www.wri.org/aqueduct)
 - [IPE API 文档](https://www.ipe.org.cn/api)
